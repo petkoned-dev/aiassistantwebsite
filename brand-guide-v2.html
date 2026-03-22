@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI ASSISTANT — Brand Guide v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: {
+              50:  '#F3F1FC',
+              100: '#E4DFFA',
+              200: '#C4BAF2',
+              300: '#9B8EC4',
+              400: '#7B6CB8',
+              500: '#6B5FAF',
+              600: '#5A4E9E',
+              700: '#4A3696',
+              800: '#362980',
+              900: '#1E1654',
+            },
+            cool: {
+              50:  '#F7F7FB',
+              100: '#EEEEF7',
+              200: '#D5D4EC',
+              300: '#A8A7C8',
+              500: '#5E5D80',
+              700: '#2D2C4A',
+              900: '#131228',
+            }
+          },
+          fontFamily: {
+            display: ['Fredoka', 'sans-serif'],
+            body:    ['DM Sans', 'sans-serif'],
+            mono:    ['DM Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --shadow-sm:    0 1px 2px rgba(74,54,150,.05), 0 1px 4px rgba(74,54,150,.04);
+      --shadow-md:    0 2px 4px rgba(74,54,150,.06), 0 4px 16px rgba(74,54,150,.10), 0 1px 2px rgba(74,54,150,.04);
+      --shadow-lg:    0 4px 8px rgba(74,54,150,.07), 0 8px 32px rgba(74,54,150,.13), 0 2px 4px rgba(74,54,150,.04);
+      --shadow-float: 0 8px 16px rgba(74,54,150,.09), 0 24px 64px rgba(74,54,150,.15), 0 4px 8px rgba(74,54,150,.06);
+      --grad-primary: linear-gradient(135deg, #6B5FAF 0%, #4A3696 100%);
+      --grad-cover:   linear-gradient(160deg, #2A1F6E 0%, #1E1654 60%, #130F3A 100%);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F7F7FB;
+      color: #2D2C4A;
+      line-height: 1.75;
+    }
+    h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; line-height: 1.1; }
+    code, .mono { font-family: 'DM Mono', monospace; }
+
+    /* Grain overlay */
+    #grain {
+      position: fixed; inset: 0; z-index: 50;
+      pointer-events: none;
+      opacity: 0.035;
+      mix-blend-mode: overlay;
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Glass utilities */
+    .glass {
+      background: rgba(247, 247, 251, 0.70);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(196, 186, 242, 0.45);
+    }
+    .glass-dark {
+      background: rgba(30, 22, 84, 0.50);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(107, 95, 175, 0.35);
+    }
+
+    /* Sticky nav */
+    #sidenav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 64px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      border-right: 1px solid rgba(196, 186, 242, 0.45);
+      background: rgba(247, 247, 251, 0.70);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 40;
+    }
+    .nav-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: #A8A7C8;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      transition: color 0.18s cubic-bezier(0.34,1.56,0.64,1), transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    .nav-dot::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%) scaleY(0);
+      width: 2px;
+      height: 20px;
+      background: var(--grad-primary);
+      border-radius: 2px;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-dot:hover { color: #4A3696; transform: translateX(2px); }
+    .nav-dot:hover::before { transform: translateY(-50%) scaleY(1); }
+    .nav-dot .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-dot:hover .dot { transform: scale(1.6); }
+
+    /* Section label */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7B6CB8;
+      margin-bottom: 12px;
+    }
+
+    /* Swatch cards */
+    .swatch-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .swatch-card:hover {
+      transform: translateY(-4px) scaleY(1.02);
+      box-shadow: var(--shadow-float);
+    }
+    .swatch-color { flex: 1; min-height: 80px; }
+    .swatch-info { padding: 10px 12px; background: white; }
+    .swatch-hex { font-family: 'DM Mono', monospace; font-size: 11px; color: #2D2C4A; }
+    .swatch-name { font-size: 11px; color: #5E5D80; margin-top: 2px; }
+
+    /* Button base */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 11px 28px;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s cubic-bezier(0.34,1.56,0.64,1), filter 0.18s;
+    }
+    .btn:focus-visible { outline: 3px solid #4A3696; outline-offset: 3px; }
+    .btn:active { transform: translateY(0) scale(0.97); }
+
+    .btn-primary {
+      background: var(--grad-primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(74,54,150,.30), 0 1px 2px rgba(74,54,150,.15);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+      box-shadow: 0 6px 24px rgba(74,54,150,.38), 0 2px 6px rgba(74,54,150,.18);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #4A3696;
+      border: 2px solid #4A3696;
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: #F3F1FC;
+      box-shadow: 0 4px 12px rgba(74,54,150,.14);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #4A3696;
+      padding: 11px 16px;
+      position: relative;
+    }
+    .btn-ghost::after {
+      content: '';
+      position: absolute;
+      bottom: 7px; left: 16px; right: 16px;
+      height: 1.5px;
+      background: var(--grad-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-ghost:hover::after { transform: scaleX(1); }
+    .btn-ghost:hover { transform: translateY(-1px); }
+
+    /* Cards */
+    .card-base {
+      background: #EEEEF7;
+      border: 1px solid #C4BAF2;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .card-elevated {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .card-elevated:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-float);
+    }
+
+    /* Input */
+    .input-field {
+      width: 100%;
+      padding: 11px 16px;
+      border: 1.5px solid #C4BAF2;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      background: #fff;
+      color: #2D2C4A;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .input-field::placeholder { color: #A8A7C8; }
+    .input-field:focus {
+      border-color: #4A3696;
+      box-shadow: 0 0 0 3px rgba(74,54,150,.14);
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex; align-items: center;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .badge-filled  { background: var(--grad-primary); color: #fff; }
+    .badge-outline { background: transparent; border: 1.5px solid #4A3696; color: #4A3696; }
+    .badge-muted   { background: #E4DFFA; color: #362980; }
+    .badge-accent  { background: #C45C8E; color: #fff; }
+
+    /* Tile chip */
+    .tile-chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 8px 16px;
+      border-radius: 10px;
+      background: var(--grad-primary);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Do/Don't */
+    .do-card   { border-left: 3px solid #4A3696; background: #F3F1FC; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+    .dont-card { border-left: 3px solid #C45C8E; background: #FDF0F6; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+
+    /* Section spacing */
+    section { padding: 80px 0; }
+    section + section {
+      border-top: 0;
+      position: relative;
+    }
+    section + section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #C4BAF2 30%, #C4BAF2 70%, transparent 100%);
+    }
+
+    /* Word bank tile */
+    .word-tile {
+      display: inline-flex;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: #E4DFFA;
+      color: #362980;
+      font-size: 13px;
+      font-weight: 500;
+      margin: 4px;
+    }
+
+    /* Logo clear space diagram */
+    .logo-clearspace {
+      position: relative;
+      display: inline-flex;
+      padding: 32px;
+      border: 1.5px dashed #7B6CB8;
+      border-radius: 4px;
+    }
+    .logo-clearspace::before,
+    .logo-clearspace::after {
+      content: '1×';
+      position: absolute;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #7B6CB8;
+    }
+    .logo-clearspace::before { top: 8px; left: 50%; transform: translateX(-50%); }
+    .logo-clearspace::after  { bottom: 8px; left: 50%; transform: translateX(-50%); }
+
+    /* Cover dark section */
+    #cover {
+      background: var(--grad-cover);
+      margin-left: -48px;
+      margin-right: -48px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    /* Download button */
+    #download-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--grad-primary);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(74,54,150,.40), 0 1px 4px rgba(74,54,150,.20);
+      text-decoration: none;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s cubic-bezier(0.34,1.56,0.64,1), filter 0.18s;
+    }
+    #download-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.12);
+      box-shadow: 0 8px 28px rgba(74,54,150,.48), 0 2px 8px rgba(74,54,150,.24);
+    }
+    #download-btn:active { transform: scale(0.97); }
+    #download-btn:focus-visible { outline: 3px solid #4A3696; outline-offset: 3px; }
+
+    /* Print / PDF styles */
+    @media print {
+      #download-btn, #grain, #sidenav { display: none !important; }
+      html { scroll-behavior: auto; }
+      body { background: #fff; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .flex { display: flex; }
+      section { padding: 48px 0; page-break-inside: avoid; }
+      section + section::before { display: none; }
+      #cover {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 48px !important;
+        padding-right: 48px !important;
+        min-height: auto !important;
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
+      }
+      .card-elevated, .card-base { box-shadow: none; border: 1px solid #C4BAF2; }
+      .glass, #sidenav { display: none !important; }
+      main { max-width: 100%; padding: 0 48px; }
+    }
+
+    /* Cover grain — screen blend on dark */
+    #cover-grain {
+      position: absolute; inset: 0; z-index: 1;
+      pointer-events: none;
+      opacity: 0.06;
+      mix-blend-mode: screen;
+    }
+  </style>
+</head>
+<body class="relative">
+
+  <!-- Grain texture overlay -->
+  <div id="grain" aria-hidden="true">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)"/>
+    </svg>
+  </div>
+
+  <div class="flex min-h-screen">
+
+    <!-- Side Nav -->
+    <nav id="sidenav" class="hidden lg:flex">
+      <a href="#cover"      class="nav-dot"><span class="dot"></span>01</a>
+      <a href="#personality" class="nav-dot"><span class="dot"></span>02</a>
+      <a href="#colors"     class="nav-dot"><span class="dot"></span>03</a>
+      <a href="#typography" class="nav-dot"><span class="dot"></span>04</a>
+      <a href="#logo"       class="nav-dot"><span class="dot"></span>05</a>
+      <a href="#mascot"     class="nav-dot"><span class="dot"></span>06</a>
+      <a href="#components" class="nav-dot"><span class="dot"></span>07</a>
+      <a href="#voice"      class="nav-dot"><span class="dot"></span>08</a>
+      <a href="#inuse"      class="nav-dot"><span class="dot"></span>09</a>
+    </nav>
+
+    <!-- Main content -->
+    <main class="flex-1 max-w-5xl mx-auto px-6 lg:px-12">
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 01 COVER -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="cover" class="relative min-h-screen flex flex-col justify-center overflow-hidden" style="padding: 0; border: none;">
+
+        <!-- Cover grain -->
+        <div id="cover-grain" aria-hidden="true">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <filter id="noise-dark">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+              <feColorMatrix type="saturate" values="0"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noise-dark)"/>
+          </svg>
+        </div>
+
+        <!-- Radial bloom gradients -->
+        <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:1;">
+          <!-- Top-left violet bloom -->
+          <div style="position:absolute;top:-10%;left:-10%;width:65%;height:65%;background:radial-gradient(ellipse 60% 50% at 20% 30%, rgba(107,95,175,0.50) 0%,transparent 70%);"></div>
+          <!-- Bottom-right deep bloom -->
+          <div style="position:absolute;bottom:-15%;right:-8%;width:60%;height:60%;background:radial-gradient(ellipse 55% 45% at 85% 80%, rgba(74,54,150,0.60) 0%,transparent 65%);"></div>
+          <!-- Top-right rose accent -->
+          <div style="position:absolute;top:-5%;right:-5%;width:40%;height:40%;background:radial-gradient(circle at 85% 15%, rgba(196,92,142,0.22) 0%,transparent 60%);"></div>
+        </div>
+
+        <!-- Bottom fade bleed into next light section -->
+        <div aria-hidden="true" style="position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to bottom, transparent, #F7F7FB);z-index:2;pointer-events:none;"></div>
+
+        <div class="relative py-24" style="z-index:3;">
+          <p class="section-label" style="color:#9B8EC4;">Brand Identity Guidelines</p>
+
+          <!-- Logo in glass-dark frosted panel -->
+          <div class="glass-dark" style="display:inline-block;border-radius:20px;padding:24px 32px;margin-bottom:40px;">
+            <img src="brand_assets/AI%20Assistant%20Gradient%20Logo.png" alt="AI ASSISTANT gradient logo" style="max-width:480px;width:100%;height:auto;display:block;" />
+          </div>
+
+          <div style="width:48px;height:3px;background:var(--grad-primary);border-radius:2px;margin-bottom:24px;"></div>
+          <p style="max-width:480px;font-size:17px;color:#9B8EC4;line-height:1.8;">
+            A living document defining the visual language, tone, and components of the AI ASSISTANT brand — v2 gradient edition.
+          </p>
+          <p class="mono" style="font-size:11px;color:#5A4E9E;margin-top:32px;">v2.0 — 2026</p>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 02 BRAND PERSONALITY -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="personality">
+        <p class="section-label">02 / Brand Personality</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">Friendly Intelligence</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          AiA isn't just a tool — it's a companion. The brand communicates warmth and curiosity in equal measure, never feeling cold or corporate.
+        </p>
+
+        <div class="flex flex-col lg:flex-row gap-12 items-start">
+          <!-- Mascot large -->
+          <div class="flex-shrink-0 flex flex-col items-center gap-4">
+            <div style="background:linear-gradient(135deg,#E4DFFA,#F3F1FC);border-radius:24px;padding:32px;box-shadow:var(--shadow-md);border:1px solid #C4BAF2;">
+              <img src="brand_assets/Icon%20AiA.png" alt="AiA mascot" style="width:120px;height:120px;object-fit:contain;" />
+            </div>
+            <span class="mono" style="font-size:11px;color:#7B6CB8;">The AiA mascot</span>
+          </div>
+
+          <!-- Pillars -->
+          <div class="flex-1">
+            <h3 style="font-size:1.15rem;color:#1E1654;margin-bottom:16px;">Personality Traits</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
+              <span class="tile-chip">Approachable</span>
+              <span class="tile-chip">Curious</span>
+              <span class="tile-chip">Warm</span>
+              <span class="tile-chip" style="background:#362980;">Slightly Retro</span>
+              <span class="tile-chip" style="background:#5A4E9E;">Trustworthy</span>
+              <span class="tile-chip" style="background:#6B5FAF;">Playful</span>
+            </div>
+
+            <h3 style="font-size:1.15rem;color:#1E1654;margin-bottom:16px;">Voice Principles</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="card-elevated">
+                <div style="font-size:20px;margin-bottom:8px;">💬</div>
+                <div style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;color:#4A3696;margin-bottom:6px;">Clear</div>
+                <p style="font-size:14px;color:#5E5D80;line-height:1.6;">Simple words over jargon. Every sentence should be understood on the first read.</p>
+              </div>
+              <div class="card-elevated">
+                <div style="font-size:20px;margin-bottom:8px;">🤝</div>
+                <div style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;color:#4A3696;margin-bottom:6px;">Warm</div>
+                <p style="font-size:14px;color:#5E5D80;line-height:1.6;">Conversational, never sterile. We talk with people, not at them.</p>
+              </div>
+              <div class="card-elevated">
+                <div style="font-size:20px;margin-bottom:8px;">✨</div>
+                <div style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;color:#4A3696;margin-bottom:6px;">Curious</div>
+                <p style="font-size:14px;color:#5E5D80;line-height:1.6;">We ask questions, explore possibilities, and embrace "I wonder if…"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 03 COLOR SYSTEM -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="colors">
+        <p class="section-label">03 / Color System</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">Violet &amp; Depth</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          A single gradient arc — light lavender to deep violet — anchors the entire palette. All tints, shades, and supporting tones derive from this gradient range.
+        </p>
+
+        <!-- Primary Scale -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Primary Scale — Violet</h3>
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:40px;">
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#F3F1FC;height:100px;border-bottom:1px solid #E4DFFA;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#F3F1FC</div><div class="swatch-name">violet-50</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#E4DFFA;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#E4DFFA</div><div class="swatch-name">violet-100</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#C4BAF2;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#C4BAF2</div><div class="swatch-name">violet-200</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#9B8EC4;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#9B8EC4</div><div class="swatch-name">violet-300</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#7B6CB8;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#7B6CB8</div><div class="swatch-name">violet-400</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#6B5FAF;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#6B5FAF</div><div class="swatch-name">violet-500</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#5A4E9E;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#5A4E9E</div><div class="swatch-name">violet-600</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;position:relative;">
+            <div class="swatch-color" style="background:linear-gradient(135deg,#6B5FAF,#4A3696);height:100px;"></div>
+            <div class="swatch-info" style="background:#4A3696;">
+              <span class="badge" style="font-size:9px;padding:2px 8px;background:#6B5FAF;color:#fff;margin-bottom:4px;display:inline-flex;border-radius:4px;">PRIMARY</span>
+              <div class="swatch-hex" style="color:#C4BAF2;">#4A3696</div>
+              <div class="swatch-name" style="color:#7B6CB8;">violet-700</div>
+            </div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#362980;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#362980</div><div class="swatch-name">violet-800</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#1E1654;height:100px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#1E1654</div><div class="swatch-name">violet-900</div></div>
+          </div>
+        </div>
+
+        <!-- Cool Neutrals -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Cool Neutrals</h3>
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:40px;">
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#F7F7FB;height:72px;border-bottom:1px solid #EEEEF7;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#F7F7FB</div><div class="swatch-name">cool-50</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#EEEEF7;height:72px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#EEEEF7</div><div class="swatch-name">cool-100</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#D5D4EC;height:72px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#D5D4EC</div><div class="swatch-name">cool-200</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#A8A7C8;height:72px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#A8A7C8</div><div class="swatch-name">cool-300</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#5E5D80;height:72px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#5E5D80</div><div class="swatch-name">cool-500</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#2D2C4A;height:72px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#2D2C4A</div><div class="swatch-name">cool-700</div></div>
+          </div>
+          <div class="swatch-card" style="min-width:80px;">
+            <div class="swatch-color" style="background:#131228;height:72px;"></div>
+            <div class="swatch-info"><div class="swatch-hex">#131228</div><div class="swatch-name">cool-900</div></div>
+          </div>
+        </div>
+
+        <!-- Accents -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Accents</h3>
+        <div style="display:flex;gap:8px;margin-bottom:0;flex-wrap:wrap;">
+          <div class="swatch-card" style="min-width:120px;">
+            <div class="swatch-color" style="background:#C45C8E;height:72px;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#C45C8E</div>
+              <div class="swatch-name">Rose</div>
+            </div>
+          </div>
+          <div class="swatch-card" style="min-width:120px;">
+            <div class="swatch-color" style="background:#5BBFDF;height:72px;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#5BBFDF</div>
+              <div class="swatch-name">Sky</div>
+            </div>
+          </div>
+          <div class="swatch-card" style="min-width:120px;">
+            <div class="swatch-color" style="background:#E8E6F8;height:72px;border-bottom:1px solid #C4BAF2;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#E8E6F8</div>
+              <div class="swatch-name">Mist</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 04 TYPOGRAPHY -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="typography">
+        <p class="section-label">04 / Typography</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">Type System</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          A rounded display font mirrors the logo's tile letterforms, while a humanist sans provides quiet, readable body text.
+        </p>
+
+        <!-- Font 1: Fredoka -->
+        <div class="card-base" style="margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <h3 style="font-size:1.25rem;color:#4A3696;font-family:'Fredoka',sans-serif;">Fredoka</h3>
+            <span class="badge badge-filled" style="font-size:11px;">Display</span>
+          </div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:2.5rem;font-weight:700;color:#1E1654;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px;">
+            Aa Bb Cc Dd Ee Ff Gg Hh
+          </div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;color:#2D2C4A;margin-bottom:12px;">
+            The quick brown fox jumps over the lazy dog.
+          </div>
+          <p style="font-size:13px;color:#5E5D80;">Weights: 600, 700 · Usage: headings, hero text, UI labels, brand elements</p>
+        </div>
+
+        <!-- Font 2: DM Sans -->
+        <div class="card-base" style="margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <h3 style="font-size:1.25rem;color:#4A3696;font-family:'Fredoka',sans-serif;">DM Sans</h3>
+            <span class="badge badge-muted" style="font-size:11px;">Body</span>
+          </div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:1.5rem;font-weight:400;color:#1E1654;margin-bottom:16px;">
+            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll
+          </div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:1rem;color:#2D2C4A;line-height:1.75;margin-bottom:12px;max-width:520px;">
+            The quick brown fox jumps over the lazy dog. Clean, humanist letterforms that remain perfectly readable at any size — from 11px captions to 20px introductory paragraphs.
+          </div>
+          <p style="font-size:13px;color:#5E5D80;">Weights: 300, 400, 500 · Usage: body copy, UI text, captions, descriptions</p>
+        </div>
+
+        <!-- Font 3: DM Mono -->
+        <div class="card-base" style="margin-bottom:48px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <h3 style="font-size:1.25rem;color:#4A3696;font-family:'Fredoka',sans-serif;">DM Mono</h3>
+            <span class="badge badge-outline" style="font-size:11px;">Code</span>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:1.1rem;color:#362980;margin-bottom:12px;">
+            #4A3696 · 0123456789 · rgba(74,54,150,0.1)
+          </div>
+          <p style="font-size:13px;color:#5E5D80;">Weight: 400 · Usage: hex codes, data labels, technical callouts</p>
+        </div>
+
+        <!-- Type Scale Table -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.25rem;color:#1E1654;margin-bottom:20px;">Type Scale</h3>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            <thead>
+              <tr style="border-bottom:1.5px solid #C4BAF2;">
+                <th style="text-align:left;padding:10px 16px;font-family:'DM Mono',monospace;font-size:11px;color:#7B6CB8;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;">Scale</th>
+                <th style="text-align:left;padding:10px 16px;font-family:'DM Mono',monospace;font-size:11px;color:#7B6CB8;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;">Size</th>
+                <th style="text-align:left;padding:10px 16px;font-family:'DM Mono',monospace;font-size:11px;color:#7B6CB8;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;">Weight</th>
+                <th style="text-align:left;padding:10px 16px;font-family:'DM Mono',monospace;font-size:11px;color:#7B6CB8;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #E4DFFA;">
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;color:#6B5FAF;">Display</td>
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;">4.5rem</td>
+                <td style="padding:12px 16px;">700</td>
+                <td style="padding:12px 16px;color:#5E5D80;">Hero headings, landing pages</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E4DFFA;">
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;color:#6B5FAF;">H1</td>
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;">2.25rem</td>
+                <td style="padding:12px 16px;">700</td>
+                <td style="padding:12px 16px;color:#5E5D80;">Section headings</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E4DFFA;">
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;color:#6B5FAF;">H2</td>
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;">1.5rem</td>
+                <td style="padding:12px 16px;">600</td>
+                <td style="padding:12px 16px;color:#5E5D80;">Sub-sections, card titles</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E4DFFA;">
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;color:#6B5FAF;">Body</td>
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;">1rem</td>
+                <td style="padding:12px 16px;">400</td>
+                <td style="padding:12px 16px;color:#5E5D80;">Paragraphs (line-height 1.75)</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E4DFFA;">
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;color:#6B5FAF;">Caption</td>
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;">0.8125rem</td>
+                <td style="padding:12px 16px;">400</td>
+                <td style="padding:12px 16px;color:#5E5D80;">Helper text, metadata</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;color:#6B5FAF;">Label</td>
+                <td style="padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;">0.6875rem</td>
+                <td style="padding:12px 16px;">500</td>
+                <td style="padding:12px 16px;color:#5E5D80;">Uppercase labels, tracking 0.08em</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pairing Specimen — dark mode -->
+        <div style="margin-top:40px;background:#1E1654;border-radius:20px;padding:40px;box-shadow:var(--shadow-lg);border:1px solid rgba(107,95,175,0.3);position:relative;overflow:hidden;">
+          <!-- subtle inner glow -->
+          <div aria-hidden="true" style="position:absolute;top:-30%;left:-10%;width:50%;height:80%;background:radial-gradient(circle,rgba(107,95,175,0.25) 0%,transparent 70%);pointer-events:none;"></div>
+          <p style="font-family:'DM Mono',monospace;font-size:11px;color:#6B5FAF;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;position:relative;">Font Pairing Specimen</p>
+          <h2 style="font-family:'Fredoka',sans-serif;font-size:2.5rem;font-weight:700;color:#F3F1FC;letter-spacing:-0.03em;line-height:1.05;margin-bottom:16px;position:relative;">Your AI companion,<br/>always ready to help.</h2>
+          <p style="font-family:'DM Sans',sans-serif;font-size:1rem;color:#9B8EC4;line-height:1.8;max-width:440px;position:relative;">Ask anything. Explore ideas. Get clear, warm answers that feel like a conversation with a knowledgeable friend — not a search engine.</p>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 05 LOGO USAGE -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="logo">
+        <p class="section-label">05 / Logo</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">Logo Usage</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          The horizontal lockup is the primary brand mark. Always use the supplied file — never recreate the logo by hand.
+        </p>
+
+        <!-- Logo on backgrounds -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">On Backgrounds</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+          <div style="background:#fff;border:1px solid #D5D4EC;border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+            <img src="brand_assets/AI%20Assistant%20Gradient%20Logo.png" alt="Logo on white" style="max-width:100%;height:auto;" />
+            <span class="mono" style="font-size:11px;color:#A8A7C8;">On white — preferred</span>
+          </div>
+          <div style="background:#F3F1FC;border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;box-shadow:var(--shadow-sm);border:1px solid #C4BAF2;">
+            <img src="brand_assets/AI%20Assistant%20Gradient%20Logo.png" alt="Logo on violet-50" style="max-width:100%;height:auto;" />
+            <span class="mono" style="font-size:11px;color:#7B6CB8;">On violet-50 — approved</span>
+          </div>
+          <div style="background:#1E1654;border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;box-shadow:var(--shadow-md);">
+            <div class="glass-dark" style="border-radius:12px;padding:16px;width:100%;">
+              <img src="brand_assets/AI%20Assistant%20Gradient%20Logo.png" alt="Logo on dark" style="max-width:100%;height:auto;" />
+            </div>
+            <span class="mono" style="font-size:11px;color:#6B5FAF;">On dark — frosted container</span>
+          </div>
+        </div>
+
+        <!-- Clear Space -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Clear Space</h3>
+        <div style="background:#EEEEF7;border-radius:16px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:40px;">
+          <div class="logo-clearspace">
+            <img src="brand_assets/AI%20Assistant%20Gradient%20Logo.png" alt="Logo clearspace" style="max-width:300px;height:auto;" />
+          </div>
+          <p style="font-size:13px;color:#5E5D80;text-align:center;max-width:360px;">Maintain a minimum clear space equal to the height of the robot character on all four sides. Never crowd the logo with competing elements.</p>
+          <div style="display:flex;gap:20px;">
+            <div style="text-align:center;"><span class="mono" style="font-size:11px;color:#6B5FAF;">Min width</span><br/><span style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#4A3696;">160px</span></div>
+            <div style="width:1px;background:#C4BAF2;"></div>
+            <div style="text-align:center;"><span class="mono" style="font-size:11px;color:#6B5FAF;">Min height</span><br/><span style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#4A3696;">40px</span></div>
+          </div>
+        </div>
+
+        <!-- Do / Don't -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Do &amp; Don't</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="do-card"><span class="badge badge-filled" style="font-size:10px;margin-bottom:8px;display:inline-flex;">DO</span><p style="font-size:14px;color:#2D2C4A;">Use on white or light violet backgrounds</p></div>
+          <div class="dont-card"><span class="badge badge-accent" style="font-size:10px;margin-bottom:8px;display:inline-flex;">DON'T</span><p style="font-size:14px;color:#2D2C4A;">Stretch or distort proportions</p></div>
+          <div class="do-card"><span class="badge badge-filled" style="font-size:10px;margin-bottom:8px;display:inline-flex;">DO</span><p style="font-size:14px;color:#2D2C4A;">Scale proportionally, preserving aspect ratio</p></div>
+          <div class="dont-card"><span class="badge badge-accent" style="font-size:10px;margin-bottom:8px;display:inline-flex;">DON'T</span><p style="font-size:14px;color:#2D2C4A;">Apply drop shadows directly to the logo</p></div>
+          <div class="do-card"><span class="badge badge-filled" style="font-size:10px;margin-bottom:8px;display:inline-flex;">DO</span><p style="font-size:14px;color:#2D2C4A;">Use a frosted panel on dark backgrounds</p></div>
+          <div class="dont-card"><span class="badge badge-accent" style="font-size:10px;margin-bottom:8px;display:inline-flex;">DON'T</span><p style="font-size:14px;color:#2D2C4A;">Place on busy or patterned backgrounds</p></div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 06 MASCOT -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="mascot">
+        <p class="section-label">06 / Mascot</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">The AiA Mascot</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          The robot is the emotional anchor of the brand. It communicates warmth, curiosity, and approachability in a single glance.
+        </p>
+
+        <!-- Size scale -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Icon at Scale</h3>
+        <div style="display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap;background:#EEEEF7;border-radius:16px;padding:32px;margin-bottom:40px;border:1px solid #D5D4EC;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="16px" style="width:16px;height:16px;object-fit:contain;" />
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">16px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="24px" style="width:24px;height:24px;object-fit:contain;" />
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">24px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="32px" style="width:32px;height:32px;object-fit:contain;" />
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">32px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="48px" style="width:48px;height:48px;object-fit:contain;" />
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">48px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="64px" style="width:64px;height:64px;object-fit:contain;" />
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">64px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="128px" style="width:128px;height:128px;object-fit:contain;" />
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">128px</span>
+          </div>
+        </div>
+
+        <!-- Usage contexts -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Usage Contexts</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="card-elevated" style="text-align:center;padding:20px 16px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="favicon" style="width:32px;height:32px;object-fit:contain;margin:0 auto 10px;" />
+            <div style="font-size:13px;color:#2D2C4A;font-weight:500;">Favicon</div>
+            <div style="font-size:12px;color:#A8A7C8;">16–32px</div>
+          </div>
+          <div class="card-elevated" style="text-align:center;padding:20px 16px;">
+            <img src="brand_assets/Icon%20AiA.png" alt="app icon" style="width:48px;height:48px;object-fit:contain;margin:0 auto 10px;" />
+            <div style="font-size:13px;color:#2D2C4A;font-weight:500;">App Icon</div>
+            <div style="font-size:12px;color:#A8A7C8;">48–512px</div>
+          </div>
+          <div class="card-elevated" style="text-align:center;padding:20px 16px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#E4DFFA,#C4BAF2);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #C4BAF2;">
+              <img src="brand_assets/Icon%20AiA.png" alt="avatar" style="width:32px;height:32px;object-fit:contain;" />
+            </div>
+            <div style="font-size:13px;color:#2D2C4A;font-weight:500;">Avatar</div>
+            <div style="font-size:12px;color:#A8A7C8;">Circular</div>
+          </div>
+          <div class="card-elevated" style="text-align:center;padding:20px 16px;">
+            <div style="position:relative;width:44px;height:44px;margin:0 auto 10px;">
+              <img src="brand_assets/Icon%20AiA.png" alt="notification" style="width:36px;height:36px;object-fit:contain;" />
+              <div style="position:absolute;top:0;right:0;width:12px;height:12px;background:#C45C8E;border-radius:50%;border:2px solid white;"></div>
+            </div>
+            <div style="font-size:13px;color:#2D2C4A;font-weight:500;">Notification</div>
+            <div style="font-size:12px;color:#A8A7C8;">With badge</div>
+          </div>
+        </div>
+
+        <div style="background:#E4DFFA;border-radius:12px;padding:20px 24px;border-left:3px solid #4A3696;">
+          <p style="font-size:14px;color:#2D2C4A;margin:0;"><strong style="color:#4A3696;">Isolation rule:</strong> Apply the same clear space as the full logo — robot height on all sides. Never crowd the mascot with competing imagery.</p>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 07 COMPONENTS -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="components">
+        <p class="section-label">07 / Components</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">UI Components</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          Every component inherits the brand's violet gradient — from the primary button's confident fill to the ghost link's subtle reveal.
+        </p>
+
+        <!-- Buttons -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Buttons</h3>
+        <div style="background:#EEEEF7;border-radius:16px;padding:32px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-bottom:40px;border:1px solid #D5D4EC;">
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <button class="btn btn-primary">Get Started</button>
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">Primary</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <button class="btn btn-secondary">Learn More</button>
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">Secondary</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <button class="btn btn-ghost">View Details</button>
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">Ghost</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <button class="btn btn-primary" style="opacity:.45;cursor:not-allowed;">Disabled</button>
+            <span class="mono" style="font-size:10px;color:#7B6CB8;">Disabled</span>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Badges</h3>
+        <div style="background:#EEEEF7;border-radius:16px;padding:32px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:40px;border:1px solid #D5D4EC;">
+          <span class="badge badge-filled">Active</span>
+          <span class="badge badge-outline">Beta</span>
+          <span class="badge badge-muted">New</span>
+          <span class="badge badge-accent">Alert</span>
+          <span class="badge" style="background:#E4DFFA;color:#5A4E9E;border:1.5px solid #C4BAF2;">Pending</span>
+        </div>
+
+        <!-- Cards -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Cards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div class="card-base">
+            <span class="mono" style="font-size:10px;color:#7B6CB8;letter-spacing:0.06em;text-transform:uppercase;">Base Card</span>
+            <h4 style="font-family:'Fredoka',sans-serif;font-size:1.15rem;color:#1E1654;margin-top:8px;margin-bottom:8px;">Subtle & Grounded</h4>
+            <p style="font-size:14px;color:#5E5D80;line-height:1.7;">Use for secondary content, info panels, or items on an already-elevated surface. Stays low in the z-plane.</p>
+          </div>
+          <div class="card-elevated" style="cursor:pointer;">
+            <span class="mono" style="font-size:10px;color:#7B6CB8;letter-spacing:0.06em;text-transform:uppercase;">Elevated Card</span>
+            <h4 style="font-family:'Fredoka',sans-serif;font-size:1.15rem;color:#1E1654;margin-top:8px;margin-bottom:8px;">Hover to Float</h4>
+            <p style="font-size:14px;color:#5E5D80;line-height:1.7;">Use for primary content, feature cards, or interactive items. Lifts on hover for clear affordance. Try hovering this card.</p>
+          </div>
+        </div>
+
+        <!-- Form Inputs -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Form Inputs</h3>
+        <div style="background:#EEEEF7;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px;max-width:480px;border:1px solid #D5D4EC;">
+          <div>
+            <label style="display:block;font-size:13px;font-weight:500;color:#2D2C4A;margin-bottom:6px;">Your question</label>
+            <input type="text" class="input-field" placeholder="Ask me anything…" />
+          </div>
+          <div>
+            <label style="display:block;font-size:13px;font-weight:500;color:#2D2C4A;margin-bottom:6px;">More context</label>
+            <textarea class="input-field" rows="3" placeholder="Add any details…" style="resize:vertical;"></textarea>
+          </div>
+          <button class="btn btn-primary" style="align-self:flex-start;">Send Message</button>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 08 VOICE & TONE -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="voice">
+        <p class="section-label">08 / Voice &amp; Tone</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">Voice &amp; Tone</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          What we say and how we say it shapes the brand as much as the logo does.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div style="background:#F3F1FC;border-radius:16px;padding:28px;border-top:3px solid #4A3696;">
+            <h4 style="font-family:'Fredoka',sans-serif;font-size:1.15rem;color:#4A3696;margin-bottom:16px;">We are…</h4>
+            <ul style="font-size:14px;color:#2D2C4A;line-height:2;list-style:none;padding:0;margin:0;">
+              <li>— Curious and exploratory</li>
+              <li>— Warm but not saccharine</li>
+              <li>— Confident, not arrogant</li>
+              <li>— Direct without being terse</li>
+              <li>— Slightly playful</li>
+            </ul>
+          </div>
+          <div style="background:#F3F1FC;border-radius:16px;padding:28px;border-top:3px solid #6B5FAF;">
+            <h4 style="font-family:'Fredoka',sans-serif;font-size:1.15rem;color:#6B5FAF;margin-bottom:16px;">We sound like…</h4>
+            <ul style="font-size:14px;color:#2D2C4A;line-height:2;list-style:none;padding:0;margin:0;">
+              <li>— A knowledgeable friend</li>
+              <li>— A patient teacher</li>
+              <li>— A curious collaborator</li>
+              <li>— Someone who listens first</li>
+              <li>— An approachable expert</li>
+            </ul>
+          </div>
+          <div style="background:#FDF0F6;border-radius:16px;padding:28px;border-top:3px solid #C45C8E;">
+            <h4 style="font-family:'Fredoka',sans-serif;font-size:1.15rem;color:#C45C8E;margin-bottom:16px;">We never…</h4>
+            <ul style="font-size:14px;color:#2D2C4A;line-height:2;list-style:none;padding:0;margin:0;">
+              <li>— Use unexplained jargon</li>
+              <li>— Sound robotic or sterile</li>
+              <li>— Condescend or lecture</li>
+              <li>— Oversell or hype</li>
+              <li>— Dismiss uncertainty</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Before / After -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Copy in Practice</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div class="dont-card" style="border-radius:12px;">
+            <div style="font-size:11px;font-weight:500;color:#C45C8E;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Not this</div>
+            <p style="font-size:15px;color:#2D2C4A;font-style:italic;">"Leverage our cutting-edge AI-powered solution to optimize your workflow efficiency."</p>
+          </div>
+          <div class="do-card" style="border-radius:12px;">
+            <div style="font-size:11px;font-weight:500;color:#4A3696;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Instead</div>
+            <p style="font-size:15px;color:#2D2C4A;font-style:italic;">"Ask anything. AiA helps you think faster and work smarter — in plain language."</p>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <h3 style="font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2D2C4A;margin-bottom:16px;">Approved Vocabulary</h3>
+        <div style="background:#F3F1FC;border-radius:12px;padding:20px;border:1px solid #C4BAF2;">
+          <span class="word-tile">Ask</span>
+          <span class="word-tile">Explore</span>
+          <span class="word-tile">Discover</span>
+          <span class="word-tile">Clear</span>
+          <span class="word-tile">Simple</span>
+          <span class="word-tile">Friendly</span>
+          <span class="word-tile">Helpful</span>
+          <span class="word-tile">Curious</span>
+          <span class="word-tile">Together</span>
+          <span class="word-tile">Instantly</span>
+          <span class="word-tile">Smart</span>
+          <span class="word-tile">Warm</span>
+          <span class="word-tile">Real</span>
+          <span class="word-tile">Honest</span>
+          <span class="word-tile">Thoughtful</span>
+          <span class="word-tile">Approachable</span>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────── -->
+      <!-- 09 BRAND IN USE -->
+      <!-- ─────────────────────────────────────────────── -->
+      <section id="inuse">
+        <p class="section-label">09 / Brand in Use</p>
+        <h2 style="font-size:2.25rem;letter-spacing:-0.02em;color:#1E1654;margin-bottom:8px;">Brand in Use</h2>
+        <p style="color:#5E5D80;max-width:520px;margin-bottom:48px;">
+          Seeing the brand applied to real contexts keeps the system grounded and consistent.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Chat bubble mockup -->
+          <div class="card-elevated" style="padding:0;overflow:hidden;">
+            <div style="background:#4A3696;padding:16px 20px;display:flex;align-items:center;gap:10px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#E4DFFA,#C4BAF2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <img src="brand_assets/Icon%20AiA.png" alt="" style="width:24px;height:24px;object-fit:contain;" />
+              </div>
+              <span style="font-family:'Fredoka',sans-serif;font-size:1rem;color:#fff;font-weight:600;">AiA</span>
+              <span style="width:8px;height:8px;background:#9B8EC4;border-radius:50%;margin-left:auto;"></span>
+            </div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:12px;">
+              <div style="background:#F3F1FC;border-radius:4px 14px 14px 14px;padding:12px 14px;font-size:14px;color:#2D2C4A;line-height:1.6;max-width:85%;">
+                Hi! What can I help you with today?
+              </div>
+              <div style="background:var(--grad-primary);border-radius:14px 4px 14px 14px;padding:12px 14px;font-size:14px;color:#fff;line-height:1.6;max-width:85%;align-self:flex-end;">
+                Summarise this document for me.
+              </div>
+              <div style="background:#F3F1FC;border-radius:4px 14px 14px 14px;padding:12px 14px;font-size:14px;color:#2D2C4A;line-height:1.6;max-width:85%;">
+                Sure! Here's a clear summary…
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification badge mockup -->
+          <div class="card-elevated" style="display:flex;flex-direction:column;gap:16px;">
+            <span class="mono" style="font-size:10px;color:#7B6CB8;text-transform:uppercase;letter-spacing:0.08em;">Notification</span>
+            <div style="background:#F3F1FC;border-radius:14px;padding:16px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-sm);border:1px solid #C4BAF2;">
+              <div style="position:relative;flex-shrink:0;">
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#E4DFFA,#C4BAF2);display:flex;align-items:center;justify-content:center;">
+                  <img src="brand_assets/Icon%20AiA.png" alt="" style="width:28px;height:28px;object-fit:contain;" />
+                </div>
+                <div style="position:absolute;top:-2px;right:-2px;width:13px;height:13px;background:#C45C8E;border-radius:50%;border:2px solid #F3F1FC;"></div>
+              </div>
+              <div>
+                <div style="font-weight:500;font-size:14px;color:#1E1654;margin-bottom:2px;">AiA is ready</div>
+                <div style="font-size:13px;color:#5E5D80;">Your summary is complete. Tap to view.</div>
+                <div class="mono" style="font-size:11px;color:#A8A7C8;margin-top:6px;">Just now</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA mockup -->
+          <div style="background:linear-gradient(160deg,#4A3696 0%,#362980 100%);border-radius:20px;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;">
+            <!-- inner glow -->
+            <div aria-hidden="true" style="position:absolute;top:-20%;right:-10%;width:60%;height:60%;background:radial-gradient(circle,rgba(155,142,196,0.25) 0%,transparent 70%);pointer-events:none;"></div>
+            <div style="position:relative;">
+              <img src="brand_assets/Icon%20AiA.png" alt="" style="width:48px;height:48px;object-fit:contain;margin-bottom:16px;opacity:0.9;" />
+              <h4 style="font-family:'Fredoka',sans-serif;font-size:1.4rem;color:#F3F1FC;line-height:1.2;margin-bottom:8px;">Ready to start?</h4>
+              <p style="font-size:13px;color:#9B8EC4;line-height:1.6;">Ask your first question — no setup needed.</p>
+            </div>
+            <button class="btn" style="background:#F3F1FC;color:#4A3696;font-weight:600;margin-top:20px;align-self:flex-start;position:relative;" onmouseover="this.style.background='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#F3F1FC';this.style.transform=''">
+              Try AiA Free →
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Download PDF button -->
+  <a id="download-btn" href="AI%20ASSISTANT%20Brand%20Guide%20v2.pdf" download="AI ASSISTANT Brand Guide v2.pdf" title="Download as PDF">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M8 1v9m0 0L5 7m3 3 3-3M2 12v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Download PDF
+  </a>
+
+  <!-- Footer -->
+  <footer style="border-top:1px solid #D5D4EC;padding:32px 0;text-align:center;margin-top:0;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px;">
+      <img src="brand_assets/Icon%20AiA.png" alt="" style="width:24px;height:24px;object-fit:contain;opacity:.4;" />
+      <span class="mono" style="font-size:12px;color:#A8A7C8;">AI ASSISTANT Brand Guide · v2.0 · 2026</span>
+    </div>
+    <p style="font-size:12px;color:#A8A7C8;">For internal use. All assets © AI ASSISTANT.</p>
+  </footer>
+
+</body>
+</html>
