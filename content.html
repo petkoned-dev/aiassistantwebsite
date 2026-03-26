@@ -1,0 +1,979 @@
+<!--
+  ============================================
+  AI ASSISTANT — HTML + JS Content Block
+  ============================================
+
+  GoHighLevel Funnel Builder Setup:
+
+  1. Go to Sites → Funnels → Your Funnel → Page Settings → Custom Code
+     Paste the Header Code (fonts + Tailwind + config) in the "Header Code" box.
+
+  2. Paste the CSS into the "Custom CSS" box, or wrap it in <style> tags
+     and add it to the Header Code section.
+
+  3. Paste everything below this comment block into a Custom JS/HTML
+     element on your funnel page.
+
+  Brand images are already using hosted CDN URLs — no upload needed.
+
+  ============================================
+-->
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="fixed top-0 left-0 right-0 z-50 frosted" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between h-18 py-3">
+            <!-- Logo — UPDATE THIS SRC to your uploaded logo URL -->
+            <a href="#" class="flex items-center gap-2 shrink-0">
+                <img src="https://assets.cdn.filesafe.space/zeTcTV86U5BNtYPQN2UP/media/69c05613aae40716b97cb15c.png" alt="AI Assistant" class="h-10 w-auto">
+            </a>
+
+            <!-- Desktop nav links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#services" class="ghost-link text-cool-500 font-body text-sm font-medium tracking-wide">Services</a>
+                <a href="#how-it-works" class="ghost-link text-cool-500 font-body text-sm font-medium tracking-wide">How It Works</a>
+                <a href="#features" class="ghost-link text-cool-500 font-body text-sm font-medium tracking-wide">Features</a>
+                <a href="#testimonials" class="ghost-link text-cool-500 font-body text-sm font-medium tracking-wide">Testimonials</a>
+            </div>
+
+            <!-- Desktop CTA -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#cta" class="btn-primary text-white font-display font-600 text-sm px-6 py-2.5 rounded-xl inline-block">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Mobile hamburger -->
+            <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1.5 p-2 ghost-link" aria-label="Open menu">
+                <span class="block w-6 h-0.5 bg-cool-700 rounded transition-transform" id="bar1"></span>
+                <span class="block w-6 h-0.5 bg-cool-700 rounded transition-opacity" id="bar2"></span>
+                <span class="block w-6 h-0.5 bg-cool-700 rounded transition-transform" id="bar3"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-nav md:hidden absolute top-full left-0 right-0 frosted border-t border-violet-100" id="mobileMenu">
+        <div class="px-6 py-6 flex flex-col gap-4">
+            <a href="#services" class="ghost-link text-cool-700 font-body font-medium py-2">Services</a>
+            <a href="#how-it-works" class="ghost-link text-cool-700 font-body font-medium py-2">How It Works</a>
+            <a href="#features" class="ghost-link text-cool-700 font-body font-medium py-2">Features</a>
+            <a href="#testimonials" class="ghost-link text-cool-700 font-body font-medium py-2">Testimonials</a>
+            <a href="#cta" class="btn-primary text-white font-display font-600 text-sm px-6 py-3 rounded-xl text-center mt-2">
+                Get Started
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<!-- ========== HERO SECTION ========== -->
+<section class="hero-gradient noise relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Left: Copy -->
+            <div>
+                <div class="animate-entrance animate-delay-1">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100 border border-violet-200 text-violet-700 font-mono text-xs tracking-wider uppercase mb-6">
+                        <span class="w-2 h-2 rounded-full bg-violet-500 inline-block"></span>
+                        Built for Home Services
+                    </span>
+                </div>
+
+                <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-6 animate-entrance animate-delay-2" style="letter-spacing: -0.03em;">
+                    Your AI team that
+                    <span class="gradient-text">never misses</span>
+                    a call
+                </h1>
+
+                <p class="font-body text-lg md:text-xl text-cool-500 leading-relaxed mb-8 max-w-lg animate-entrance animate-delay-3" style="line-height: 1.75;">
+                    We build bespoke AI agents for home service businesses. Answer every lead, book more jobs, and follow up automatically — 24/7, in your brand's voice.
+                </p>
+
+                <div class="flex flex-wrap gap-4 animate-entrance animate-delay-4">
+                    <a href="https://api.leadconnectorhq.com/widget/bookings/aidiscoverycall3-8038fb3d-28dd-4f49-9e6e-75eaeac30a20-102d84a2-bee1-44d1-87b0-9a2a7498abcb" target="_blank" rel="noopener noreferrer" class="btn-primary text-white font-display font-semibold px-8 py-3.5 rounded-xl text-base inline-flex items-center gap-2">
+                        Book a Discovery Call
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="ml-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <button type="button" id="magnetize-btn" class="magnetize-btn btn-secondary text-violet-700 font-display font-semibold px-8 py-3.5 rounded-xl text-base border-2 border-violet-200 bg-white inline-flex items-center gap-2" onclick="openOptinModal()">
+                        <span class="relative flex items-center justify-center gap-2 z-10">
+                            <svg class="magnetize-icon w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                            Talk To Me
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Trust micro-stats -->
+                <div class="flex items-center gap-8 mt-10 animate-entrance animate-delay-5">
+                    <div>
+                        <span class="font-display font-bold text-2xl text-violet-800">500+</span>
+                        <span class="block text-cool-300 font-body text-sm mt-0.5">Agents Deployed</span>
+                    </div>
+                    <div class="w-px h-10 bg-violet-200"></div>
+                    <div>
+                        <span class="font-display font-bold text-2xl text-violet-800">98%</span>
+                        <span class="block text-cool-300 font-body text-sm mt-0.5">Call Answer Rate</span>
+                    </div>
+                    <div class="w-px h-10 bg-violet-200"></div>
+                    <div>
+                        <span class="font-display font-bold text-2xl text-violet-800">3x</span>
+                        <span class="block text-cool-300 font-body text-sm mt-0.5">More Bookings</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Chat mockup -->
+            <div class="animate-entrance animate-delay-3 relative hidden lg:block">
+                <div class="relative">
+                    <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(91,191,223,0.15) 0%, transparent 70%);"></div>
+                    <div class="absolute -bottom-8 -left-8 w-48 h-48 rounded-full" style="background: radial-gradient(circle, rgba(196,92,142,0.12) 0%, transparent 70%);"></div>
+
+                    <!-- Chat window -->
+                    <div class="relative bg-white rounded-2xl border border-violet-200 p-6 max-w-md mx-auto" style="box-shadow: 0 8px 40px rgba(74,54,150,0.14), 0 2px 8px rgba(74,54,150,0.08);">
+                        <div class="flex items-center gap-3 pb-4 border-b border-violet-50 mb-4">
+                            <!-- UPDATE THIS SRC to your uploaded icon URL -->
+                            <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center overflow-hidden">
+                                <img src="https://assets.cdn.filesafe.space/zeTcTV86U5BNtYPQN2UP/media/69c05648ad14005d50f2d02c.png" alt="AiA" class="w-8 h-8 object-contain">
+                            </div>
+                            <div>
+                                <span class="font-display font-semibold text-sm text-cool-700">AI Assistant</span>
+                                <span class="flex items-center gap-1.5 text-xs text-green-600 font-body mt-0.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>
+                                    Online now
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex gap-2 animate-entrance animate-delay-5">
+                                <div class="bg-violet-50 rounded-2xl rounded-tl-md px-4 py-2.5 max-w-xs">
+                                    <p class="font-body text-sm text-cool-700 leading-relaxed">Hi! I'm your AI assistant for Premier Plumbing. How can I help you today?</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-end animate-entrance animate-delay-6">
+                                <div class="bg-violet-700 rounded-2xl rounded-tr-md px-4 py-2.5 max-w-xs">
+                                    <p class="font-body text-sm text-white leading-relaxed">I have a leaky faucet. Can someone come out tomorrow?</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 animate-entrance animate-delay-7">
+                                <div class="bg-violet-50 rounded-2xl rounded-tl-md px-4 py-2.5 max-w-xs">
+                                    <p class="font-body text-sm text-cool-700 leading-relaxed">Absolutely! I have a 9 AM slot available tomorrow. I'll book that for you and send a confirmation text. Sound good?</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-violet-50">
+                            <div class="flex items-center gap-2 text-cool-300 text-xs font-body">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14A6 6 0 108 2a6 6 0 000 12z" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                                Avg response time: 1.2 seconds
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-4 -left-4 bg-white rounded-xl px-4 py-2.5 border border-violet-100 animate-float" style="box-shadow: 0 4px 20px rgba(74,54,150,0.12);">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-6" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div>
+                                <span class="font-display font-semibold text-xs text-cool-700 block">Job Booked!</span>
+                                <span class="font-body text-xs text-cool-300">Tomorrow at 9 AM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating notification -->
+                    <div class="absolute -top-4 -right-4 bg-white rounded-xl px-4 py-2.5 border border-violet-100 animate-float" style="animation-delay: 1s; box-shadow: 0 4px 20px rgba(74,54,150,0.12);">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(91,191,223,0.15);">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 4 6-4M2 4v8a1 1 0 001 1h10a1 1 0 001-1V4M2 4a1 1 0 011-1h10a1 1 0 011 1" stroke="#5BBFDF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div>
+                                <span class="font-display font-semibold text-xs text-cool-700 block">Follow-up Sent</span>
+                                <span class="font-body text-xs text-cool-300">SMS + Email</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, transparent, #F7F7FB);"></div>
+</section>
+
+
+<!-- ========== TRUST BAR ========== -->
+<section class="py-16 bg-cool-50 border-y border-violet-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <p class="text-center font-body text-sm text-cool-300 uppercase tracking-widest mb-8 reveal">Trusted by home service businesses across the country</p>
+        <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 reveal">
+            <span class="font-display font-semibold text-lg text-cool-200 tracking-wide">Premier Plumbing</span>
+            <span class="font-display font-semibold text-lg text-cool-200 tracking-wide">CoolAir HVAC</span>
+            <span class="font-display font-semibold text-lg text-cool-200 tracking-wide">BrightSpark Electric</span>
+            <span class="font-display font-semibold text-lg text-cool-200 tracking-wide">GreenScape Lawns</span>
+            <span class="font-display font-semibold text-lg text-cool-200 tracking-wide">TopShield Roofing</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== LIVE DEMO AGENT CTA ========== -->
+<section class="py-24 relative noise overflow-hidden" style="background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(228,223,250,0.4) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 20%, rgba(196,92,142,0.05) 0%, transparent 40%), #F7F7FB;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 flex items-center justify-center">
+        <div class="reveal">
+            <div class="relative flex items-center justify-center">
+                <div class="circular-dot" style="top: -12px; left: 50%; background: #C45C8E; animation-delay: 0s;"></div>
+                <div class="circular-dot" style="bottom: -8px; right: 20%; background: #4A3696; animation-delay: 0.8s;"></div>
+                <div class="circular-dot" style="top: 30%; left: -14px; background: #5BBFDF; animation-delay: 1.6s;"></div>
+                <div class="circular-dot" style="top: 20%; right: -10px; background: #C4BAF2; animation-delay: 2.2s;"></div>
+
+                <div class="circular-orb" id="circularOrb">
+                    <div class="circular-orb-inner-ring"></div>
+                    <div class="circular-orb-inner-ring-2"></div>
+
+                    <div class="circular-image-overlay" id="circularImageOverlay">
+                        <img id="circularOverlayImg" src="" alt="" />
+                    </div>
+
+                    <div class="circular-center-btn" id="circularCenterBtn">
+                        <button class="circular-cta" onclick="openOptinModal()" aria-label="Live Demo Agent — get a call from our AI">
+                            <span class="circular-cta-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                    <line x1="12" y1="19" x2="12" y2="23"/>
+                                    <line x1="8" y1="23" x2="16" y2="23"/>
+                                </svg>
+                            </span>
+                            <span class="circular-cta-label">Live Demo Agent</span>
+                        </button>
+                    </div>
+
+                    <div class="circular-text-ring" id="circularTextRing">
+                        <svg viewBox="0 0 400 400" width="100%" height="100%">
+                            <defs>
+                                <linearGradient id="orbTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#4A3696" />
+                                    <stop offset="100%" stop-color="#5A4E9E" />
+                                </linearGradient>
+                            </defs>
+                            <path id="orbCurve" fill="none"
+                                  d="M 200,200 m -155,0 a 155,155 0 1,1 310,0 a 155,155 0 1,1 -310,0" />
+                            <text class="font-body" style="font-size: 14px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;" data-index="0">
+                                <textPath href="#orbCurve" fill="url(#orbTextGrad)" startOffset="0%" textLength="140" lengthAdjust="spacingAndGlyphs">24/7 AVAILABILITY</textPath>
+                            </text>
+                            <text class="font-body" style="font-size: 14px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;" data-index="1">
+                                <textPath href="#orbCurve" fill="url(#orbTextGrad)" startOffset="25%" textLength="140" lengthAdjust="spacingAndGlyphs">INSTANT RESPONSE</textPath>
+                            </text>
+                            <text class="font-body" style="font-size: 14px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;" data-index="2">
+                                <textPath href="#orbCurve" fill="url(#orbTextGrad)" startOffset="50%" textLength="140" lengthAdjust="spacingAndGlyphs">SMART BOOKING</textPath>
+                            </text>
+                            <text class="font-body" style="font-size: 14px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;" data-index="3">
+                                <textPath href="#orbCurve" fill="url(#orbTextGrad)" startOffset="75%" textLength="160" lengthAdjust="spacingAndGlyphs">NATURAL CONVERSATION</textPath>
+                            </text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== SERVICES / VERTICALS ========== -->
+<section id="services" class="py-24 section-violet relative noise">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="font-mono text-xs text-violet-500 uppercase tracking-widest block mb-4">Industries We Serve</span>
+            <h2 class="font-display font-bold text-3xl md:text-4xl text-cool-900 mb-4" style="letter-spacing: -0.03em;">
+                Built for the trades that keep homes running
+            </h2>
+            <p class="font-body text-cool-500 text-lg" style="line-height: 1.75;">
+                Every AI agent we build understands your industry — the terminology, the workflows, the questions your customers ask.
+            </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- HVAC -->
+            <div class="card-lift reveal bg-white rounded-2xl p-6 border border-violet-100 group cursor-pointer" style="box-shadow: 0 2px 16px rgba(74,54,150,0.05), 0 1px 3px rgba(74,54,150,0.03);">
+                <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3v22M3 14h22M7 7l14 14M21 7L7 21" stroke="#4A3696" stroke-width="1.8" stroke-linecap="round"/><circle cx="14" cy="14" r="4" stroke="#C45C8E" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-2">HVAC</h3>
+                <p class="font-body text-cool-500 text-sm leading-relaxed" style="line-height: 1.7;">Schedule maintenance, handle emergency calls, quote installations — your AI agent knows heating and cooling inside out.</p>
+            </div>
+
+            <!-- Plumbing -->
+            <div class="card-lift reveal bg-white rounded-2xl p-6 border border-violet-100 group cursor-pointer" style="box-shadow: 0 2px 16px rgba(74,54,150,0.05), 0 1px 3px rgba(74,54,150,0.03);">
+                <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M10 4v6a4 4 0 004 4h0a4 4 0 004-4V4" stroke="#4A3696" stroke-width="1.8" stroke-linecap="round"/><path d="M14 14v10" stroke="#4A3696" stroke-width="1.8" stroke-linecap="round"/><path d="M8 20h12" stroke="#C45C8E" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="24" r="1.5" fill="#4A3696"/></svg>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-2">Plumbing</h3>
+                <p class="font-body text-cool-500 text-sm leading-relaxed" style="line-height: 1.7;">Qualify leak vs. remodel inquiries, dispatch urgent jobs, and keep your schedule full without lifting a finger.</p>
+            </div>
+
+            <!-- Electrical -->
+            <div class="card-lift reveal bg-white rounded-2xl p-6 border border-violet-100 group cursor-pointer" style="box-shadow: 0 2px 16px rgba(74,54,150,0.05), 0 1px 3px rgba(74,54,150,0.03);">
+                <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M16 3L8 15h5l-1 10 8-12h-5l1-10z" stroke="#4A3696" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="rgba(74,54,150,0.08)"/></svg>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-2">Electrical</h3>
+                <p class="font-body text-cool-500 text-sm leading-relaxed" style="line-height: 1.7;">From panel upgrades to outlet installs — your agent answers technical questions and books the right technician.</p>
+            </div>
+
+            <!-- Roofing -->
+            <div class="card-lift reveal bg-white rounded-2xl p-6 border border-violet-100 group cursor-pointer" style="box-shadow: 0 2px 16px rgba(74,54,150,0.05), 0 1px 3px rgba(74,54,150,0.03);">
+                <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M3 16L14 6l11 10" stroke="#4A3696" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 14v9a1 1 0 001 1h14a1 1 0 001-1v-9" stroke="#4A3696" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 24v-6h6v6" stroke="#C45C8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-2">Roofing</h3>
+                <p class="font-body text-cool-500 text-sm leading-relaxed" style="line-height: 1.7;">Handle storm-season surges, collect damage details over the phone, and schedule inspections automatically.</p>
+            </div>
+
+            <!-- Landscaping -->
+            <div class="card-lift reveal bg-white rounded-2xl p-6 border border-violet-100 group cursor-pointer" style="box-shadow: 0 2px 16px rgba(74,54,150,0.05), 0 1px 3px rgba(74,54,150,0.03);">
+                <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 24V14" stroke="#4A3696" stroke-width="1.8" stroke-linecap="round"/><path d="M14 14c0-5 4-8 8-9-1 4-4 7-8 9z" fill="rgba(74,54,150,0.08)" stroke="#4A3696" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 16c0-5-4-8-8-9 1 4 4 7 8 9z" fill="rgba(196,92,142,0.08)" stroke="#C45C8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-2">Landscaping</h3>
+                <p class="font-body text-cool-500 text-sm leading-relaxed" style="line-height: 1.7;">Quote weekly mowing, seasonal cleanups, and design consultations — your agent sells your services naturally.</p>
+            </div>
+
+            <!-- Cleaning -->
+            <div class="card-lift reveal bg-white rounded-2xl p-6 border border-violet-100 group cursor-pointer" style="box-shadow: 0 2px 16px rgba(74,54,150,0.05), 0 1px 3px rgba(74,54,150,0.03);">
+                <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="8" stroke="#4A3696" stroke-width="1.8"/><path d="M10 14l2.5 2.5L18 11" stroke="#C45C8E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="11" stroke="#E4DFFA" stroke-width="1" stroke-dasharray="3 3"/></svg>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-2">Cleaning</h3>
+                <p class="font-body text-cool-500 text-sm leading-relaxed" style="line-height: 1.7;">Book recurring cleans, handle one-time deep-clean requests, and manage schedule changes with ease.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== HOW IT WORKS ========== -->
+<section id="how-it-works" class="py-24 bg-cool-50 relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="font-mono text-xs text-violet-500 uppercase tracking-widest block mb-4">How It Works</span>
+            <h2 class="font-display font-bold text-3xl md:text-4xl text-cool-900 mb-4" style="letter-spacing: -0.03em;">
+                From discovery to deployment in three simple steps
+            </h2>
+            <p class="font-body text-cool-500 text-lg" style="line-height: 1.75;">
+                We handle everything — you just tell us about your business and watch your new AI agent go to work.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 relative">
+            <div class="hidden md:block absolute top-20 h-0.5 step-connector" style="left: 16%; right: 16%;"></div>
+
+            <div class="reveal text-center relative">
+                <div class="relative z-10 mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #5A4E9E 0%, #4A3696 100%); box-shadow: 0 4px 20px rgba(74,54,150,0.25);">
+                    <span class="font-display font-bold text-2xl text-white">1</span>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-3">Discover</h3>
+                <p class="font-body text-cool-500 text-sm max-w-xs mx-auto" style="line-height: 1.7;">We learn your business — your services, pricing, scheduling, and exactly how you want customers treated.</p>
+            </div>
+
+            <div class="reveal text-center relative" style="transition-delay: 0.15s;">
+                <div class="relative z-10 mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #5A4E9E 0%, #4A3696 100%); box-shadow: 0 4px 20px rgba(74,54,150,0.25);">
+                    <span class="font-display font-bold text-2xl text-white">2</span>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-3">Build</h3>
+                <p class="font-body text-cool-500 text-sm max-w-xs mx-auto" style="line-height: 1.7;">We craft your custom AI agent — trained on your brand voice, services, and integrated with your existing tools.</p>
+            </div>
+
+            <div class="reveal text-center relative" style="transition-delay: 0.3s;">
+                <div class="relative z-10 mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #5A4E9E 0%, #4A3696 100%); box-shadow: 0 4px 20px rgba(74,54,150,0.25);">
+                    <span class="font-display font-bold text-2xl text-white">3</span>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-cool-900 mb-3">Deploy</h3>
+                <p class="font-body text-cool-500 text-sm max-w-xs mx-auto" style="line-height: 1.7;">Your agent goes live — answering calls, booking jobs, and following up. We monitor performance and keep improving.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== FEATURES ========== -->
+<section id="features" class="py-24 relative noise" style="background: linear-gradient(180deg, #F7F7FB 0%, #F3F1FC 50%, #F7F7FB 100%);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="reveal">
+                    <span class="font-mono text-xs text-violet-500 uppercase tracking-widest block mb-4">What Your Agent Does</span>
+                    <h2 class="font-display font-bold text-3xl md:text-4xl text-cool-900 mb-6" style="letter-spacing: -0.03em;">
+                        Everything a great receptionist does — and more
+                    </h2>
+                </div>
+
+                <div class="space-y-5">
+                    <div class="reveal flex gap-4 items-start">
+                        <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v7a2 2 0 01-2 2H8l-4 3v-3H4a2 2 0 01-2-2V5z" stroke="#4A3696" stroke-width="1.5"/><path d="M7 7h6M7 10h4" stroke="#4A3696" stroke-width="1.3" stroke-linecap="round"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-semibold text-base text-cool-900 mb-1">24/7 Call & Chat Answering</h4>
+                            <p class="font-body text-sm text-cool-500" style="line-height: 1.7;">Never miss a lead again. Your AI agent picks up every call, text, and chat — even at 2 AM on a holiday.</p>
+                        </div>
+                    </div>
+
+                    <div class="reveal flex gap-4 items-start" style="transition-delay: 0.1s;">
+                        <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="#4A3696" stroke-width="1.5"/><path d="M3 8h14" stroke="#4A3696" stroke-width="1.3"/><path d="M7 2v4M13 2v4" stroke="#4A3696" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="12.5" r="1.5" fill="#C45C8E"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-semibold text-base text-cool-900 mb-1">Smart Scheduling</h4>
+                            <p class="font-body text-sm text-cool-500" style="line-height: 1.7;">Books jobs directly into your calendar, avoids double-booking, and sends confirmation texts to customers.</p>
+                        </div>
+                    </div>
+
+                    <div class="reveal flex gap-4 items-start" style="transition-delay: 0.2s;">
+                        <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.3L10 14.5 5.1 17l.9-5.3-4-3.9L7.5 7z" stroke="#4A3696" stroke-width="1.5" stroke-linejoin="round" fill="rgba(74,54,150,0.06)"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-semibold text-base text-cool-900 mb-1">Lead Qualification</h4>
+                            <p class="font-body text-sm text-cool-500" style="line-height: 1.7;">Asks the right questions, captures contact info, identifies urgency, and routes hot leads to your team instantly.</p>
+                        </div>
+                    </div>
+
+                    <div class="reveal flex gap-4 items-start" style="transition-delay: 0.3s;">
+                        <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10a7 7 0 0114 0" stroke="#4A3696" stroke-width="1.5" stroke-linecap="round"/><path d="M10 10v-4" stroke="#C45C8E" stroke-width="1.5" stroke-linecap="round"/><path d="M10 10l3 3" stroke="#4A3696" stroke-width="1.3" stroke-linecap="round"/><circle cx="10" cy="10" r="1.2" fill="#4A3696"/><path d="M6 17h8" stroke="#4A3696" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-semibold text-base text-cool-900 mb-1">Automated Follow-ups</h4>
+                            <p class="font-body text-sm text-cool-500" style="line-height: 1.7;">Sends review requests after jobs, follows up on quotes, and re-engages past customers — all automatically.</p>
+                        </div>
+                    </div>
+
+                    <div class="reveal flex gap-4 items-start" style="transition-delay: 0.4s;">
+                        <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="2" stroke="#4A3696" stroke-width="1.5"/><path d="M6 9h8M6 12h5" stroke="#4A3696" stroke-width="1.3" stroke-linecap="round"/><circle cx="15" cy="5" r="3" fill="#C45C8E" stroke="white" stroke-width="1.5"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-semibold text-base text-cool-900 mb-1">CRM & Tool Integration</h4>
+                            <p class="font-body text-sm text-cool-500" style="line-height: 1.7;">Connects with ServiceTitan, Housecall Pro, Jobber, Google Calendar — whatever you already use.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats panel -->
+            <div class="reveal">
+                <div class="bg-white rounded-3xl p-8 border border-violet-100 relative" style="box-shadow: 0 8px 40px rgba(74,54,150,0.08), 0 1px 4px rgba(74,54,150,0.04);">
+                    <div class="absolute top-0 right-0 w-32 h-32 rounded-bl-full" style="background: linear-gradient(135deg, rgba(91,191,223,0.08) 0%, transparent 100%);"></div>
+
+                    <span class="font-mono text-xs text-violet-500 uppercase tracking-widest block mb-6">Average Client Results</span>
+
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex items-end gap-3 mb-2">
+                                <span class="font-display font-bold text-5xl gradient-text">42%</span>
+                                <span class="font-body text-sm text-cool-300 pb-2">increase</span>
+                            </div>
+                            <span class="font-body text-cool-500 text-sm">More leads converted to booked jobs</span>
+                            <div class="mt-3 w-full h-2 rounded-full bg-violet-50">
+                                <div class="h-2 rounded-full" style="width: 42%; background: linear-gradient(90deg, #7B6CB8 0%, #4A3696 100%);"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-end gap-3 mb-2">
+                                <span class="font-display font-bold text-5xl gradient-text">85%</span>
+                                <span class="font-body text-sm text-cool-300 pb-2">reduction</span>
+                            </div>
+                            <span class="font-body text-cool-500 text-sm">Fewer missed calls and lost leads</span>
+                            <div class="mt-3 w-full h-2 rounded-full bg-violet-50">
+                                <div class="h-2 rounded-full" style="width: 85%; background: linear-gradient(90deg, #C45C8E 0%, #4A3696 100%);"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-end gap-3 mb-2">
+                                <span class="font-display font-bold text-5xl gradient-text">4.8</span>
+                                <span class="font-body text-sm text-cool-300 pb-2">avg rating</span>
+                            </div>
+                            <span class="font-body text-cool-500 text-sm">Customer satisfaction with AI interactions</span>
+                            <div class="mt-3 flex gap-1">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="#4A3696"><path d="M10 1l2.5 5.5L18 7.5l-4 4 1 5.5L10 14.5 5 17l1-5.5-4-4 5.5-1z"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="#4A3696"><path d="M10 1l2.5 5.5L18 7.5l-4 4 1 5.5L10 14.5 5 17l1-5.5-4-4 5.5-1z"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="#4A3696"><path d="M10 1l2.5 5.5L18 7.5l-4 4 1 5.5L10 14.5 5 17l1-5.5-4-4 5.5-1z"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="#4A3696"><path d="M10 1l2.5 5.5L18 7.5l-4 4 1 5.5L10 14.5 5 17l1-5.5-4-4 5.5-1z"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 20 20"><defs><linearGradient id="half"><stop offset="80%" stop-color="#4A3696"/><stop offset="80%" stop-color="#E4DFFA"/></linearGradient></defs><path d="M10 1l2.5 5.5L18 7.5l-4 4 1 5.5L10 14.5 5 17l1-5.5-4-4 5.5-1z" fill="url(#half)"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== TESTIMONIALS ========== -->
+<section id="testimonials" class="py-24 bg-cool-50 relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="font-mono text-xs text-violet-500 uppercase tracking-widest block mb-4">What Our Clients Say</span>
+            <h2 class="font-display font-bold text-3xl md:text-4xl text-cool-900" style="letter-spacing: -0.03em;">
+                Real results from real home service businesses
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="reveal testimonial-card rounded-2xl p-6 relative">
+                <div class="absolute top-4 right-4">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" opacity="0.15"><path d="M8 20c0-4 3-7.5 7-8v3c-2 .5-3.5 2-3.5 4H15v5H8v-4zm11 0c0-4 3-7.5 7-8v3c-2 .5-3.5 2-3.5 4H26v5h-7v-4z" fill="#4A3696"/></svg>
+                </div>
+                <div class="flex gap-1 mb-4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                </div>
+                <p class="font-body text-cool-700 text-sm mb-6" style="line-height: 1.75;">"We were losing 30% of our calls after hours. AI Assistant built us an agent that handles everything — booking, quoting, even scheduling follow-ups. Revenue is up 40% in three months."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white" style="background: linear-gradient(135deg, #5A4E9E, #4A3696);">MR</div>
+                    <div>
+                        <span class="font-display font-semibold text-sm text-cool-900 block">Mike Reynolds</span>
+                        <span class="font-body text-xs text-cool-300">Owner, Reynolds HVAC</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal testimonial-card rounded-2xl p-6 relative" style="transition-delay: 0.15s;">
+                <div class="absolute top-4 right-4">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" opacity="0.15"><path d="M8 20c0-4 3-7.5 7-8v3c-2 .5-3.5 2-3.5 4H15v5H8v-4zm11 0c0-4 3-7.5 7-8v3c-2 .5-3.5 2-3.5 4H26v5h-7v-4z" fill="#4A3696"/></svg>
+                </div>
+                <div class="flex gap-1 mb-4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                </div>
+                <p class="font-body text-cool-700 text-sm mb-6" style="line-height: 1.75;">"The best part? Our customers don't even realize they're talking to AI. It sounds just like us — friendly, helpful, and knowledgeable about plumbing. It's like having a perfect receptionist."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white" style="background: linear-gradient(135deg, #C45C8E, #4A3696);">SP</div>
+                    <div>
+                        <span class="font-display font-semibold text-sm text-cool-900 block">Sarah Prescott</span>
+                        <span class="font-body text-xs text-cool-300">GM, Prescott Plumbing & Drain</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal testimonial-card rounded-2xl p-6 relative" style="transition-delay: 0.3s;">
+                <div class="absolute top-4 right-4">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" opacity="0.15"><path d="M8 20c0-4 3-7.5 7-8v3c-2 .5-3.5 2-3.5 4H15v5H8v-4zm11 0c0-4 3-7.5 7-8v3c-2 .5-3.5 2-3.5 4H26v5h-7v-4z" fill="#4A3696"/></svg>
+                </div>
+                <div class="flex gap-1 mb-4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#4A3696"><path d="M8 1l2 4.4 4.4.6-3.2 3.2.8 4.4L8 11.6 3.6 13.6l.8-4.4L1.2 6l4.4-.6z"/></svg>
+                </div>
+                <p class="font-body text-cool-700 text-sm mb-6" style="line-height: 1.75;">"During storm season, we used to get crushed with calls. Now our AI agent handles the surge, collects damage info, and schedules inspections. We tripled our capacity without hiring anyone."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white" style="background: linear-gradient(135deg, #5BBFDF, #4A3696);">JT</div>
+                    <div>
+                        <span class="font-display font-semibold text-sm text-cool-900 block">James Torres</span>
+                        <span class="font-body text-xs text-cool-300">Founder, TopShield Roofing Co.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== CTA SECTION ========== -->
+<section id="cta" class="py-24 section-deep relative noise overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <div class="inline-flex items-center justify-center mb-8">
+                <!-- UPDATE THIS SRC to your uploaded icon URL -->
+                <img src="https://assets.cdn.filesafe.space/zeTcTV86U5BNtYPQN2UP/media/69c05648ad14005d50f2d02c.png" alt="AiA Mascot" class="w-20 h-20 animate-float" style="filter: brightness(0) invert(1);">
+            </div>
+
+            <h2 class="font-display font-bold text-3xl md:text-5xl text-white mb-6" style="letter-spacing: -0.03em;">
+                Ready to stop missing calls and start booking more jobs?
+            </h2>
+            <p class="font-body text-violet-200 text-lg mb-10 max-w-xl mx-auto" style="line-height: 1.75;">
+                Book a free discovery call. We'll show you exactly how a custom AI agent would work for your business — no jargon, no pressure.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://api.leadconnectorhq.com/widget/bookings/aidiscoverycall3-8038fb3d-28dd-4f49-9e6e-75eaeac30a20-102d84a2-bee1-44d1-87b0-9a2a7498abcb" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-display font-semibold text-base text-cool-900 bg-white btn-secondary" style="box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="#4A3696" stroke-width="1.5"/><path d="M3 8h14" stroke="#4A3696" stroke-width="1.3"/><path d="M7 3v3M13 3v3" stroke="#4A3696" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Book a Discovery Call
+                </a>
+                <button type="button" id="magnetize-btn-cta" class="magnetize-btn magnetize-btn-dark btn-secondary inline-flex items-center gap-2 px-8 py-4 rounded-xl font-display font-semibold text-base text-violet-200 border-2 border-violet-500" onclick="openOptinModal()">
+                    <span class="relative flex items-center justify-center gap-2 z-10">
+                        <svg class="magnetize-icon w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                        Talk To Our AI Agent
+                    </span>
+                </button>
+            </div>
+
+            <p class="font-body text-violet-300 text-sm mt-6 opacity-60">No commitment required. Free 30-minute consultation.</p>
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent 0%, #7B6CB8 50%, transparent 100%);"></div>
+</section>
+
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-cool-900 py-16 relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-12 mb-12">
+            <div class="md:col-span-1">
+                <!-- UPDATE THIS SRC to your uploaded logo URL -->
+                <img src="https://assets.cdn.filesafe.space/zeTcTV86U5BNtYPQN2UP/media/69c05613aae40716b97cb15c.png" alt="AI Assistant" class="h-10 w-auto mb-4 brightness-110">
+                <p class="font-body text-cool-300 text-sm mb-6" style="line-height: 1.7;">Bespoke AI agents built for the home service industry. We handle the tech — you handle the trade.</p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 rounded-lg bg-cool-700 flex items-center justify-center ghost-link" aria-label="LinkedIn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#A8A7C8"><path d="M4.5 6.5v6M4.5 3.5a1 1 0 100 2 1 1 0 000-2zM8.5 6.5v6M8.5 9.5a2 2 0 014 0v3"/></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-cool-700 flex items-center justify-center ghost-link" aria-label="Facebook">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#A8A7C8"><path d="M9.5 2.5H11V5h-1.5A.5.5 0 009 5.5V7h2l-.5 2H9v4.5H6.5V9H5V7h1.5V5a2.5 2.5 0 012.5-2.5h.5z"/></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-cool-700 flex items-center justify-center ghost-link" aria-label="YouTube">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#A8A7C8"><path d="M2 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V5z"/><path d="M6.5 5.5l4 2.5-4 2.5v-5z" fill="#2D2C4A"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-display font-semibold text-sm text-cool-100 mb-4">Services</h4>
+                <ul class="space-y-2.5">
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">HVAC Agents</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Plumbing Agents</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Electrical Agents</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Roofing Agents</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Landscaping Agents</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-semibold text-sm text-cool-100 mb-4">Company</h4>
+                <ul class="space-y-2.5">
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">About Us</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Case Studies</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Blog</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Careers</a></li>
+                    <li><a href="#" class="ghost-link font-body text-sm text-cool-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-semibold text-sm text-cool-100 mb-4">Get In Touch</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 4 6-4M2 4v8a1 1 0 001 1h10a1 1 0 001-1V4M2 4a1 1 0 011-1h10a1 1 0 011 1" stroke="#A8A7C8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <a href="mailto:info@aiemployis.com" class="ghost-link font-body text-sm text-cool-300">info@aiemployis.com</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3h3l1.5 3L6 7.5c.8 1.6 2.4 3.2 4 4L11.5 10l3 1.5V14a1 1 0 01-1 1A11 11 0 012 4a1 1 0 011-1z" stroke="#A8A7C8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <a href="tel:+447723463657" class="ghost-link font-body text-sm text-cool-300">+44 7723 463657</a>
+                    </li>
+                </ul>
+                <div class="mt-6 p-4 rounded-xl border border-cool-700/50" style="background: rgba(45,44,74,0.5);">
+                    <span class="font-display font-semibold text-xs text-cool-100 block mb-1">Free Discovery Call</span>
+                    <span class="font-body text-xs text-cool-300 block mb-3">See what AI can do for your business.</span>
+                    <a href="#cta" class="btn-primary text-white font-display font-semibold text-xs px-4 py-2 rounded-lg inline-block">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-cool-700/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <span class="font-body text-xs text-cool-500">&copy; 2026 AI Assistant. All rights reserved.</span>
+            <div class="flex gap-6">
+                <a href="#" class="ghost-link font-body text-xs text-cool-500">Privacy Policy</a>
+                <a href="#" class="ghost-link font-body text-xs text-cool-500">Terms of Service</a>
+                <a href="#" class="ghost-link font-body text-xs text-cool-500">Cookie Settings</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ========== OPTIN MODAL ========== -->
+<div class="optin-overlay" id="optinModal" role="dialog" aria-modal="true" aria-labelledby="optinTitle">
+    <div class="optin-backdrop" id="optinBackdrop"></div>
+    <div class="optin-card">
+        <button type="button" class="optin-close" onclick="closeOptinModal()" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/></svg>
+        </button>
+
+        <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#E4DFFA,#F3F1FC);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A3696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+        </div>
+
+        <h2 id="optinTitle" class="font-display font-bold text-2xl text-cool-900 text-center mb-2" style="letter-spacing:-0.03em;">Talk To Our AI Agent</h2>
+        <p class="font-body text-cool-300 text-center text-sm mb-6" style="line-height:1.7;">Enter your details and our AI agent will call you right away so you can experience it live.</p>
+
+        <form id="optinForm" class="flex flex-col gap-4">
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A8A7C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <input id="optinName" type="text" class="optin-input" placeholder="Your name" required autocomplete="name">
+            </div>
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A8A7C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <input id="optinPhone" type="tel" class="optin-input" placeholder="Your phone number" required autocomplete="tel">
+            </div>
+            <button type="submit" class="optin-submit">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+                Call Me Now
+            </button>
+        </form>
+
+        <p class="font-body text-cool-300 text-center text-xs mt-4 opacity-60">No spam. Our AI agent will call you within seconds.</p>
+    </div>
+</div>
+
+
+<!-- ========== ALL JAVASCRIPT ========== -->
+<script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('open', menuOpen);
+        if (menuOpen) {
+            bar1.style.transform = 'rotate(45deg) translate(4px, 4px)';
+            bar2.style.opacity = '0';
+            bar3.style.transform = 'rotate(-45deg) translate(4px, -4px)';
+        } else {
+            bar1.style.transform = '';
+            bar2.style.opacity = '';
+            bar3.style.transform = '';
+        }
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuOpen = false;
+            mobileMenu.classList.remove('open');
+            bar1.style.transform = '';
+            bar2.style.opacity = '';
+            bar3.style.transform = '';
+        });
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Navbar shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            navbar.style.boxShadow = '0 1px 12px rgba(74,54,150,0.06)';
+        } else {
+            navbar.style.boxShadow = 'none';
+        }
+    });
+
+    // Magnetize button — spring-physics particle effect
+    function initMagnetizeButton(id, count) {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+
+        const PARTICLE_COUNT = count || 14;
+        const DT = 1 / 60;
+        const ATTRACT_STIFFNESS = 50;
+        const ATTRACT_DAMPING = 10;
+        const SCATTER_STIFFNESS = 100;
+        const SCATTER_DAMPING = 15;
+
+        const particles = [];
+        let isAttracting = false;
+        let animFrameId = null;
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            const el = document.createElement('div');
+            el.className = 'magnetize-particle';
+            btn.insertBefore(el, btn.firstChild);
+
+            const homeX = Math.random() * 360 - 180;
+            const homeY = Math.random() * 360 - 180;
+
+            particles.push({ el, x: homeX, y: homeY, homeX, homeY, vx: 0, vy: 0 });
+            el.style.transform = 'translate(' + homeX + 'px, ' + homeY + 'px)';
+        }
+
+        function animate() {
+            let settled = true;
+            const stiffness = isAttracting ? ATTRACT_STIFFNESS : SCATTER_STIFFNESS;
+            const damping = isAttracting ? ATTRACT_DAMPING : SCATTER_DAMPING;
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                const targetX = isAttracting ? 0 : p.homeX;
+                const targetY = isAttracting ? 0 : p.homeY;
+
+                p.vx += (stiffness * (targetX - p.x) - damping * p.vx) * DT;
+                p.vy += (stiffness * (targetY - p.y) - damping * p.vy) * DT;
+                p.x += p.vx * DT;
+                p.y += p.vy * DT;
+
+                p.el.style.transform = 'translate(' + p.x.toFixed(1) + 'px, ' + p.y.toFixed(1) + 'px)';
+
+                if (Math.abs(p.vx) > 0.05 || Math.abs(p.vy) > 0.05 ||
+                    Math.abs(targetX - p.x) > 0.5 || Math.abs(targetY - p.y) > 0.5) {
+                    settled = false;
+                }
+            }
+
+            if (!settled) {
+                animFrameId = requestAnimationFrame(animate);
+            } else {
+                animFrameId = null;
+            }
+        }
+
+        function startAnim() {
+            if (!animFrameId) animFrameId = requestAnimationFrame(animate);
+        }
+
+        btn.addEventListener('mouseenter', function() {
+            isAttracting = true; btn.classList.add('attracting'); startAnim();
+        });
+        btn.addEventListener('mouseleave', function() {
+            isAttracting = false; btn.classList.remove('attracting'); startAnim();
+        });
+        btn.addEventListener('touchstart', function() {
+            isAttracting = true; btn.classList.add('attracting'); startAnim();
+        }, { passive: true });
+        btn.addEventListener('touchend', function() {
+            isAttracting = false; btn.classList.remove('attracting'); startAnim();
+        }, { passive: true });
+    }
+
+    initMagnetizeButton('magnetize-btn', 14);
+    initMagnetizeButton('magnetize-btn-cta', 14);
+
+    // Circular Reveal Orb — hover image reveal
+    (function() {
+        var orbItems = [
+            { image: 'https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=400&h=400&fit=crop' },
+            { image: 'https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=400&h=400&fit=crop' },
+            { image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop' },
+            { image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=400&fit=crop' }
+        ];
+
+        orbItems.forEach(function(item) {
+            var img = new window.Image();
+            img.src = item.image;
+        });
+
+        var overlay = document.getElementById('circularImageOverlay');
+        var overlayImg = document.getElementById('circularOverlayImg');
+        var centerBtn = document.getElementById('circularCenterBtn');
+        var textRing = document.getElementById('circularTextRing');
+
+        if (!textRing || !overlay) return;
+
+        var textEls = textRing.querySelectorAll('text[data-index]');
+
+        textEls.forEach(function(el) {
+            var idx = parseInt(el.getAttribute('data-index'), 10);
+            var tp = el.querySelector('textPath');
+            el.addEventListener('mouseenter', function() {
+                if (tp) tp.setAttribute('fill', '#362980');
+                if (orbItems[idx]) {
+                    overlayImg.src = orbItems[idx].image;
+                    overlay.classList.add('active');
+                    if (centerBtn) centerBtn.style.opacity = '0';
+                }
+            });
+            el.addEventListener('mouseleave', function() {
+                if (tp) tp.setAttribute('fill', 'url(#orbTextGrad)');
+                overlay.classList.remove('active');
+                if (centerBtn) centerBtn.style.opacity = '1';
+            });
+        });
+
+        if (centerBtn) {
+            centerBtn.style.transition = 'opacity 0.3s ease';
+        }
+    })();
+
+    // Optin modal
+    function openOptinModal() {
+        document.getElementById('optinModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() {
+            document.getElementById('optinName').focus();
+        }, 350);
+    }
+    function closeOptinModal() {
+        document.getElementById('optinModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('optinBackdrop').addEventListener('click', closeOptinModal);
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeOptinModal();
+    });
+
+    // Form submit
+    document.getElementById('optinForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.getElementById('optinName').value.trim();
+        var phone = document.getElementById('optinPhone').value.trim();
+        if (!name || !phone) return;
+        // TODO: wire up to your backend / webhook
+        console.log('Optin submitted:', { name: name, phone: phone });
+        closeOptinModal();
+    });
+</script>

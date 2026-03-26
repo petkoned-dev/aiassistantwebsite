@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoHighLevel Setup Guide — AI Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --violet-700: #4A3696;
+            --violet-600: #5A4E9E;
+            --violet-500: #6B5FAF;
+            --violet-200: #C4BAF2;
+            --violet-100: #E4DFFA;
+            --violet-50: #F3F1FC;
+            --cool-900: #131228;
+            --cool-700: #2D2C4A;
+            --cool-500: #5E5D80;
+            --cool-300: #A8A7C8;
+            --cool-200: #D5D4EC;
+            --cool-50: #F7F7FB;
+            --green: #22c55e;
+            --rose: #C45C8E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cool-50);
+            color: var(--cool-700);
+            line-height: 1.7;
+        }
+
+        /* ===== Header ===== */
+        .guide-header {
+            background: linear-gradient(135deg, var(--cool-900) 0%, var(--violet-700) 100%);
+            padding: 3rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .guide-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 50% at 70% 20%, rgba(196,186,242,0.15) 0%, transparent 60%);
+        }
+        .guide-header h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 2.25rem;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        .guide-header p {
+            color: var(--violet-200);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ===== Progress sidebar ===== */
+        .guide-layout {
+            max-width: 900px;
+            margin: -2rem auto 4rem;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        /* ===== Step cards ===== */
+        .step-card {
+            background: #fff;
+            border-radius: 1.25rem;
+            padding: 2rem 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--violet-100);
+            box-shadow: 0 2px 16px rgba(74,54,150,0.06), 0 1px 3px rgba(74,54,150,0.03);
+            position: relative;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, var(--violet-600), var(--violet-700));
+            color: #fff;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 12px rgba(74,54,150,0.25);
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.35rem;
+            color: var(--cool-900);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .step-desc {
+            color: var(--cool-500);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            max-width: 640px;
+        }
+
+        .step-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.85rem 1rem;
+            border-radius: 0.75rem;
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
+            font-size: 0.85rem;
+            color: #92400E;
+            margin-bottom: 1.25rem;
+        }
+        .step-note svg { flex-shrink: 0; margin-top: 2px; }
+
+        .step-tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.85rem 1rem;
+            border-radius: 0.75rem;
+            background: var(--violet-50);
+            border: 1px solid var(--violet-100);
+            font-size: 0.85rem;
+            color: var(--violet-700);
+            margin-bottom: 1.25rem;
+        }
+        .step-tip svg { flex-shrink: 0; margin-top: 2px; }
+
+        .step-success {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.85rem 1rem;
+            border-radius: 0.75rem;
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            font-size: 0.85rem;
+            color: #166534;
+            margin-top: 1.25rem;
+        }
+        .step-success svg { flex-shrink: 0; margin-top: 2px; }
+
+        /* ===== Code blocks ===== */
+        .code-block {
+            position: relative;
+            margin: 1rem 0;
+            border-radius: 0.85rem;
+            overflow: hidden;
+            border: 1px solid var(--cool-200);
+        }
+        .code-block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1rem;
+            background: var(--cool-900);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .code-block-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cool-300);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .code-block pre {
+            background: var(--cool-900);
+            color: #e2e0f0;
+            padding: 1.25rem 1rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.65;
+            overflow-x: auto;
+            white-space: pre;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* ===== Buttons ===== */
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.85rem;
+            border-radius: 0.5rem;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: var(--violet-200);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.15s ease;
+        }
+        .btn-copy:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-1px);
+        }
+        .btn-copy:active { transform: translateY(0); }
+        .btn-copy.copied {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            border: none;
+            background: linear-gradient(135deg, var(--violet-600), var(--violet-700));
+            color: #fff;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(74,54,150,0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(74,54,150,0.3);
+        }
+        .btn-download:active { transform: translateY(0); }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== Visual instruction images ===== */
+        .visual-marker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 2rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+        }
+        .visual-marker.paste { background: #DBEAFE; color: #1E40AF; }
+        .visual-marker.click { background: #FEE2E2; color: #991B1B; }
+        .visual-marker.upload { background: #D1FAE5; color: #065F46; }
+
+        /* ===== Sub-steps ===== */
+        .sub-steps {
+            list-style: none;
+            counter-reset: sub;
+            margin: 1rem 0;
+        }
+        .sub-steps li {
+            counter-increment: sub;
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--violet-50);
+            font-size: 0.92rem;
+            color: var(--cool-700);
+        }
+        .sub-steps li:last-child { border-bottom: none; }
+        .sub-steps li::before {
+            content: counter(sub, lower-alpha) ")";
+            font-family: 'DM Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--violet-500);
+            font-weight: 500;
+            flex-shrink: 0;
+            padding-top: 1px;
+        }
+
+        /* ===== Section divider ===== */
+        .section-divider {
+            text-align: center;
+            padding: 2rem 0 1rem;
+        }
+        .section-divider span {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.85rem;
+            color: var(--cool-300);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* ===== Checklist ===== */
+        .checklist {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        .checklist li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 0;
+            font-size: 0.92rem;
+            color: var(--cool-700);
+        }
+        .checklist li .check-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            border: 2px solid var(--cool-200);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 640px) {
+            .guide-header { padding: 2rem 1.5rem 3rem; }
+            .guide-header h1 { font-size: 1.75rem; }
+            .guide-layout { padding: 0 1rem; }
+            .step-card { padding: 1.5rem 1.25rem 2rem; }
+            .code-block pre { font-size: 0.72rem; padding: 1rem 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="guide-header">
+    <h1>GoHighLevel Funnel Setup Guide</h1>
+    <p>Follow these 4 steps to publish your AI Assistant website using the GoHighLevel funnel builder.</p>
+</header>
+
+<div class="guide-layout">
+
+    <!-- ========== STEP 1 ========== -->
+    <div class="step-card">
+        <div class="step-number">1</div>
+        <h2 class="step-title">Create Your Funnel Page in GoHighLevel</h2>
+        <p class="step-desc">Set up a blank funnel page that will hold your AI Assistant website. All brand images are already hosted on our CDN — no uploads needed.</p>
+
+        <ol class="sub-steps">
+            <li>In your GHL dashboard go to <strong>Sites → Funnels</strong>.</li>
+            <li>Create a new funnel (or open an existing one) and <strong>add a new step/page</strong>.</li>
+            <li>Choose a <strong>blank template</strong> — we'll replace all content with custom code.</li>
+            <li>Open the page in the funnel builder editor so you're ready for the next steps.</li>
+        </ol>
+
+        <div class="step-tip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v1M8 8v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span><strong>Brand images are pre-hosted.</strong> The HTML code already references these CDN URLs — no need to upload or replace anything:<br><br>
+            <code style="font-family: 'DM Mono', monospace; font-size: 0.72rem; word-break: break-all;">Logo: https://assets.cdn.filesafe.space/zeTcTV86U5BNtYPQN2UP/media/69c05613aae40716b97cb15c.png</code><br>
+            <code style="font-family: 'DM Mono', monospace; font-size: 0.72rem; word-break: break-all;">Icon: https://assets.cdn.filesafe.space/zeTcTV86U5BNtYPQN2UP/media/69c05648ad14005d50f2d02c.png</code></span>
+        </div>
+    </div>
+
+
+    <!-- ========== STEP 2 ========== -->
+    <div class="step-card">
+        <div class="step-number">2</div>
+        <h2 class="step-title">Add Header Code (Fonts + Tailwind)</h2>
+        <p class="step-desc">This loads the fonts, colors, and Tailwind framework your site needs. Paste this into your funnel page's <strong>header tracking code</strong> section.</p>
+
+        <div class="step-tip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v1M8 8v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span><strong>Where to find it in GoHighLevel:</strong><br><br>
+            <strong>Option A — Page-level (recommended):</strong><br>
+            In the funnel builder → click the <strong>Settings</strong> gear icon (top-right) → scroll to <strong>"Custom Code"</strong> → paste into the <strong>"Header Code"</strong> box.<br><br>
+            <strong>Option B — Funnel-level:</strong><br>
+            Sites → Funnels → select your funnel → <strong>Settings</strong> tab → <strong>"Head Tracking Code"</strong> → paste there. This applies to all pages in the funnel.</span>
+        </div>
+
+        <div class="code-block">
+            <div class="code-block-header">
+                <span class="code-block-label"><span class="visual-marker paste">Paste</span> Header Code</span>
+                <button class="btn-copy" onclick="copyCode('header-code', this)">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 4V3a1.5 1.5 0 00-1.5-1.5H3A1.5 1.5 0 001.5 3v5.5A1.5 1.5 0 003 10h1" stroke="currentColor" stroke-width="1.3"/></svg>
+                    Copy
+                </button>
+            </div>
+            <pre id="header-code">&lt;!-- Google Fonts --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&amp;family=Fredoka:wght@600;700&amp;display=swap" rel="stylesheet"&gt;
+
+&lt;!-- Tailwind CSS --&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+
+&lt;!-- Tailwind Custom Colors & Fonts --&gt;
+&lt;script&gt;
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                violet: {
+                    50: '#F3F1FC', 100: '#E4DFFA', 200: '#C4BAF2',
+                    300: '#9B8EC4', 400: '#7B6CB8', 500: '#6B5FAF',
+                    600: '#5A4E9E', 700: '#4A3696', 800: '#362980',
+                    900: '#1E1654',
+                },
+                cool: {
+                    50: '#F7F7FB', 100: '#EEEEF7', 200: '#D5D4EC',
+                    300: '#A8A7C8', 500: '#5E5D80', 700: '#2D2C4A',
+                    900: '#131228',
+                },
+                rose: '#C45C8E',
+                sky: '#5BBFDF',
+                mist: '#E8E6F8',
+            },
+            fontFamily: {
+                display: ['Fredoka', 'sans-serif'],
+                body: ['DM Sans', 'sans-serif'],
+                mono: ['DM Mono', 'monospace'],
+            },
+        }
+    }
+}
+&lt;/script&gt;</pre>
+        </div>
+    </div>
+
+
+    <!-- ========== STEP 3 ========== -->
+    <div class="step-card">
+        <div class="step-number">3</div>
+        <h2 class="step-title">Add the CSS Stylesheet</h2>
+        <p class="step-desc">This is all the styling — animations, hover effects, gradients, the floating orb, modal popup, etc. GoHighLevel doesn't have a dedicated CSS section, so you'll wrap it in <code style="background: var(--violet-50); padding: 0.15rem 0.4rem; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 0.8rem;">&lt;style&gt;</code> tags.</p>
+
+        <div class="step-tip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v1M8 8v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span><strong>Where to paste it in GoHighLevel:</strong><br><br>
+            Use the <strong>"Copy With &lt;style&gt; Tags"</strong> button below, then paste into the same <strong>Header Code</strong> box from Step 2 — just add it <strong>after</strong> the code you already pasted.<br><br>
+            Same location: funnel builder → <strong>Settings</strong> (gear icon) → <strong>"Custom Code"</strong> → <strong>"Header Code"</strong> box.</span>
+        </div>
+
+        <div class="step-note">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L1 14h14L8 1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6v3M8 11v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span><strong>Important:</strong> Use the <strong>"Copy With &lt;style&gt; Tags"</strong> button — GoHighLevel needs the CSS wrapped in &lt;style&gt; tags to work. The "Copy CSS Only" option is for platforms with a dedicated CSS section.</span>
+        </div>
+
+        <div class="code-block">
+            <div class="code-block-header">
+                <span class="code-block-label"><span class="visual-marker paste">Paste</span> CSS Stylesheet</span>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn-copy" onclick="copyCode('css-code', this)">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 4V3a1.5 1.5 0 00-1.5-1.5H3A1.5 1.5 0 001.5 3v5.5A1.5 1.5 0 003 10h1" stroke="currentColor" stroke-width="1.3"/></svg>
+                        Copy CSS Only
+                    </button>
+                    <button class="btn-copy" onclick="copyCSSWithStyleTags(this)">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 4V3a1.5 1.5 0 00-1.5-1.5H3A1.5 1.5 0 001.5 3v5.5A1.5 1.5 0 003 10h1" stroke="currentColor" stroke-width="1.3"/></svg>
+                        Copy With &lt;style&gt; Tags
+                    </button>
+                </div>
+            </div>
+            <pre id="css-code" style="max-height: 300px;">/* ===== Base Reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: #2D2C4A; background: #F7F7FB; }
+
+/* ===== Noise Texture Overlay ===== */
+.noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ===== Hero Gradient ===== */
+.hero-gradient {
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(74,54,150,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(91,191,223,0.10) 0%, transparent 50%),
+        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(196,92,142,0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #F7F7FB 0%, #F3F1FC 100%);
+}
+
+/* ===== Frosted Glass ===== */
+.frosted {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* ===== Card Hover Lift ===== */
+.card-lift {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+.card-lift:hover { transform: translateY(-6px); }
+
+/* ===== Primary Button ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #5A4E9E 0%, #4A3696 50%, #362980 100%);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(74,54,150,0.3), 0 2px 8px rgba(74,54,150,0.2);
+}
+.btn-primary:active { transform: translateY(0px); }
+.btn-primary:focus-visible { outline: 3px solid #5BBFDF; outline-offset: 2px; }
+
+/* ===== Secondary Button ===== */
+.btn-secondary {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, background-color 0.3s ease;
+}
+.btn-secondary:hover { transform: translateY(-2px); background-color: #E4DFFA; }
+.btn-secondary:active { transform: translateY(0px); }
+.btn-secondary:focus-visible { outline: 3px solid #5BBFDF; outline-offset: 2px; }
+
+/* ===== Magnetize Button ===== */
+.magnetize-btn {
+    position: relative; touch-action: none; overflow: visible; min-width: 10rem; cursor: pointer;
+}
+.magnetize-particle {
+    position: absolute; width: 6px; height: 6px; border-radius: 50%;
+    background-color: #7B6CB8; pointer-events: none; opacity: 0.4;
+    transition: opacity 0.3s ease; will-change: transform;
+    top: 50%; left: 50%; margin-top: -3px; margin-left: -3px;
+}
+.magnetize-btn.attracting .magnetize-particle { opacity: 1; }
+.magnetize-btn .magnetize-icon { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.magnetize-btn.attracting .magnetize-icon { transform: scale(1.15); }
+.magnetize-btn:hover { transform: none; background-color: #E4DFFA; }
+.magnetize-btn:active { transform: none; }
+.magnetize-btn-dark .magnetize-particle { background-color: #C4BAF2; }
+.magnetize-btn-dark:hover { background-color: rgba(196, 186, 242, 0.1); }
+
+/* ===== Optin Modal ===== */
+.optin-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.optin-overlay.open { opacity: 1; visibility: visible; }
+.optin-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(19, 18, 40, 0.65);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.optin-card {
+    position: relative; width: 100%; max-width: 440px; background: #fff;
+    border-radius: 1.25rem; padding: 2.5rem 2rem 2rem;
+    box-shadow: 0 24px 80px rgba(74, 54, 150, 0.18), 0 8px 24px rgba(74, 54, 150, 0.10), 0 0 0 1px rgba(196, 186, 242, 0.25);
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.optin-overlay.open .optin-card { transform: translateY(0) scale(1); }
+.optin-close {
+    position: absolute; top: 1rem; right: 1rem; width: 2rem; height: 2rem;
+    border-radius: 0.5rem; border: none; background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; color: #A8A7C8;
+    transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+.optin-close:hover { color: #4A3696; background: #F3F1FC; transform: scale(1.1); }
+.optin-close:focus-visible { outline: 3px solid #5BBFDF; outline-offset: 2px; }
+.optin-close:active { transform: scale(0.95); }
+.optin-input {
+    width: 100%; padding: 0.8rem 1rem 0.8rem 2.75rem;
+    border: 2px solid #D5D4EC; border-radius: 0.75rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: #2D2C4A; background: #F7F7FB;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.optin-input::placeholder { color: #A8A7C8; }
+.optin-input:focus { outline: none; border-color: #7B6CB8; box-shadow: 0 0 0 4px rgba(123, 108, 184, 0.12); }
+.optin-submit {
+    width: 100%; padding: 0.85rem 1.5rem; border: none; border-radius: 0.75rem;
+    font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1rem; color: #fff;
+    background: linear-gradient(135deg, #5A4E9E 0%, #4A3696 50%, #362980 100%);
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.optin-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74, 54, 150, 0.3), 0 2px 8px rgba(74, 54, 150, 0.2); }
+.optin-submit:active { transform: translateY(0); }
+.optin-submit:focus-visible { outline: 3px solid #5BBFDF; outline-offset: 2px; }
+
+/* ===== Ghost Link ===== */
+.ghost-link { transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease; }
+.ghost-link:hover { color: #4A3696; transform: translateY(-1px); }
+.ghost-link:focus-visible { outline: 2px solid #5BBFDF; outline-offset: 2px; border-radius: 4px; }
+
+/* ===== Animations ===== */
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+.animate-entrance { opacity: 0; animation: fadeSlideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+.animate-delay-5 { animation-delay: 0.5s; }
+.animate-delay-6 { animation-delay: 0.6s; }
+.animate-delay-7 { animation-delay: 0.7s; }
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+/* ===== Scroll Reveal ===== */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== Gradient Text ===== */
+.gradient-text {
+    background: linear-gradient(135deg, #4A3696 0%, #7B6CB8 40%, #C45C8E 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ===== Section Backgrounds ===== */
+.section-violet {
+    background: radial-gradient(ellipse 70% 50% at 30% 80%, rgba(74,54,150,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 30%, rgba(196,92,142,0.05) 0%, transparent 40%), #F7F7FB;
+}
+.section-deep {
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(30,22,84,0.95) 0%, rgba(30,22,84,0.8) 50%),
+        radial-gradient(ellipse 50% 40% at 20% 20%, rgba(74,54,150,0.6) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 80% 40%, rgba(196,92,142,0.2) 0%, transparent 40%), #1E1654;
+}
+
+/* ===== Mobile Nav ===== */
+.mobile-nav { transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.mobile-nav.open { transform: translateY(0); }
+
+/* ===== Testimonial Cards ===== */
+.testimonial-card {
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+    border: 1px solid rgba(196,186,242,0.4);
+    box-shadow: 0 4px 20px rgba(74,54,150,0.06), 0 1px 4px rgba(74,54,150,0.03);
+}
+
+/* ===== Misc ===== */
+.step-connector { background: linear-gradient(90deg, #C4BAF2 0%, #4A3696 50%, #C4BAF2 100%); }
+.icon-wrap {
+    background: linear-gradient(135deg, #F3F1FC 0%, #E4DFFA 100%);
+    box-shadow: 0 2px 12px rgba(74,54,150,0.1), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* ===== Circular Reveal Orb ===== */
+@keyframes circularFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes circularSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes circularPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+
+.circular-orb {
+    position: relative; width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(228,223,250,0.9) 0%, transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(196,186,242,0.5) 0%, transparent 50%),
+        linear-gradient(135deg, #E4DFFA 0%, #F3F1FC 40%, #E8E6F8 100%);
+    box-shadow: 16px 16px 40px rgba(74,54,150,0.15), -16px -16px 40px rgba(255,255,255,0.8),
+        inset 2px 2px 6px rgba(255,255,255,0.6), inset -2px -2px 6px rgba(74,54,150,0.06);
+    animation: circularFloat 5s ease-in-out infinite; overflow: hidden;
+    transition: box-shadow 0.5s ease;
+}
+.circular-orb:hover {
+    box-shadow: 20px 20px 50px rgba(74,54,150,0.2), -20px -20px 50px rgba(255,255,255,0.9),
+        inset 2px 2px 6px rgba(255,255,255,0.6), inset -2px -2px 6px rgba(74,54,150,0.06);
+}
+.circular-orb-inner-ring {
+    position: absolute; inset: 2px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(228,223,250,0.6) 0%, transparent 60%),
+        linear-gradient(135deg, #E4DFFA 0%, #F3F1FC 100%);
+    box-shadow: inset 6px 6px 14px rgba(74,54,150,0.08), inset -6px -6px 14px rgba(255,255,255,0.7);
+}
+.circular-orb-inner-ring-2 {
+    position: absolute; inset: 12px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, rgba(243,241,252,0.8) 0%, transparent 60%),
+        linear-gradient(135deg, #F3F1FC 0%, #E8E6F8 100%);
+    box-shadow: inset 4px 4px 10px rgba(74,54,150,0.06), inset -4px -4px 10px rgba(255,255,255,0.6);
+}
+.circular-center-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 10; }
+.circular-cta {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    padding: 1.25rem 2rem; border-radius: 1.5rem;
+    background: radial-gradient(circle at 30% 30%, rgba(243,241,252,0.9) 0%, transparent 60%),
+        linear-gradient(135deg, #E8E6F8 0%, #F3F1FC 100%);
+    box-shadow: 6px 6px 14px rgba(74,54,150,0.1), -6px -6px 14px rgba(255,255,255,0.8);
+    cursor: pointer; border: none; font-family: 'Fredoka', sans-serif;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+}
+.circular-cta:hover {
+    transform: scale(1.05);
+    box-shadow: inset 3px 3px 8px rgba(74,54,150,0.08), inset -3px -3px 8px rgba(255,255,255,0.7);
+}
+.circular-cta:active { transform: scale(0.97); }
+.circular-cta:focus-visible { outline: 3px solid #5BBFDF; outline-offset: 3px; }
+.circular-cta-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, #5A4E9E 0%, #4A3696 100%);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(74,54,150,0.3); position: relative;
+}
+.circular-cta-icon::after {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid rgba(74,54,150,0.15);
+    animation: circularPulse 2s ease-in-out infinite;
+}
+.circular-cta-label { font-size: 0.85rem; font-weight: 600; color: #4A3696; letter-spacing: 0.08em; text-transform: uppercase; }
+.circular-text-ring { position: absolute; inset: 0; animation: circularSpin 30s linear infinite; }
+.circular-image-overlay {
+    position: absolute; inset: 0; z-index: 5;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; opacity: 0; transition: opacity 0.35s ease;
+}
+.circular-image-overlay.active { opacity: 1; }
+.circular-image-overlay img { width: 75%; height: 75%; object-fit: cover; border-radius: 50%; filter: brightness(0.9); }
+.circular-dot {
+    position: absolute; width: 10px; height: 10px; border-radius: 50%;
+    animation: circularPulse 3s ease-in-out infinite; box-shadow: 0 0 8px currentColor;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+    .circular-orb { width: 300px; height: 300px; }
+    .circular-cta { padding: 1rem 1.5rem; }
+    .circular-cta-icon { width: 32px; height: 32px; }
+    .circular-cta-label { font-size: 0.7rem; }
+    .circular-text-ring text { font-size: 11px !important; letter-spacing: 0.22em !important; }
+}</pre>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-download" onclick="downloadFile('styles.css', document.getElementById('css-code').textContent)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download styles.css
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ========== STEP 4 ========== -->
+    <div class="step-card">
+        <div class="step-number">4</div>
+        <h2 class="step-title">Add the HTML + JavaScript</h2>
+        <p class="step-desc">This is the actual website content — all the sections, text, images, and interactive features. You'll add this as a <strong>Custom JS/HTML</strong> element in the GoHighLevel funnel builder.</p>
+
+        <div class="step-tip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v1M8 8v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span><strong>How to add it in GoHighLevel:</strong><br><br>
+            1. In the funnel builder, click <strong>"Add Element"</strong> (or the <strong>+</strong> button).<br>
+            2. Scroll down to the <strong>"Advanced"</strong> section and drag a <strong>"Custom JS/HTML"</strong> element onto the page.<br>
+            3. Click the element and select <strong>"Open Code Editor"</strong>.<br>
+            4. Paste the code below into the editor and click <strong>"Save"</strong>.</span>
+        </div>
+
+        <div class="step-tip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v1M8 8v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span><strong>No image URLs to replace!</strong> All brand images already point to hosted CDN links — just copy and paste as-is.</span>
+        </div>
+
+        <div class="step-note">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L1 14h14L8 1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6v3M8 11v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span><strong>GHL page settings:</strong> For the best result, make sure your section/row is set to <strong>full width</strong> and remove any default padding from the row and section containers so the website fills the entire viewport.</span>
+        </div>
+
+        <div class="code-block">
+            <div class="code-block-header">
+                <span class="code-block-label"><span class="visual-marker paste">Paste</span> HTML + JavaScript</span>
+                <button class="btn-copy" onclick="copyCode('html-code', this)">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 4V3a1.5 1.5 0 00-1.5-1.5H3A1.5 1.5 0 001.5 3v5.5A1.5 1.5 0 003 10h1" stroke="currentColor" stroke-width="1.3"/></svg>
+                    Copy
+                </button>
+            </div>
+            <pre id="html-code" style="max-height: 300px;">Loading content...</pre>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-download" onclick="downloadHTMLFile()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download content.html
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== DONE ========== -->
+    <div class="step-card" style="border-color: #BBF7D0; background: #F0FDF4;">
+        <div class="step-number" style="background: linear-gradient(135deg, #16a34a, #15803d);">&#10003;</div>
+        <h2 class="step-title" style="color: #166534;">You're Done!</h2>
+        <p class="step-desc" style="color: #166534;">Click <strong>"Preview"</strong> in the funnel builder to see your page live. Everything should look exactly like the original design — all animations, hover effects, and the popup modal included.</p>
+
+        <div class="step-success">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>Troubleshooting tips:</strong><br>
+            • <strong>Page looks unstyled</strong> (plain text, no colors) — double-check that Steps 2 &amp; 3 (Header Code) were saved correctly.<br>
+            • <strong>Content looks squished or has padding</strong> — set the section/row to full width and remove default padding in the GHL builder settings.<br>
+            • <strong>Animations not working</strong> — make sure the CSS from Step 3 was wrapped in &lt;style&gt; tags before pasting into the Header Code box.<br>
+            • <strong>Images not loading</strong> — the CDN URLs should work immediately; check your browser console for errors.</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// The full HTML content from content.html — loaded as a string
+var htmlContent = null;
+
+// Load the content.html file
+fetch('content.html')
+    .then(r => r.text())
+    .then(text => {
+        // Strip the instruction comment block at the top
+        var idx = text.indexOf('<!-- ========== NAVIGATION');
+        if (idx !== -1) text = text.substring(idx);
+        htmlContent = text;
+        document.getElementById('html-code').textContent = text;
+    })
+    .catch(() => {
+        document.getElementById('html-code').textContent = '/* Could not auto-load content.html — open this guide via localhost (node serve.mjs) */';
+    });
+
+// Copy to clipboard
+function copyCode(elementId, btn) {
+    var text = document.getElementById(elementId).textContent;
+    navigator.clipboard.writeText(text).then(function() {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!';
+        setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 4V3a1.5 1.5 0 00-1.5-1.5H3A1.5 1.5 0 001.5 3v5.5A1.5 1.5 0 003 10h1" stroke="currentColor" stroke-width="1.3"/></svg> Copy';
+        }, 2000);
+    });
+}
+
+// Copy CSS wrapped in <style> tags
+function copyCSSWithStyleTags(btn) {
+    var css = document.getElementById('css-code').textContent;
+    var wrapped = '<style>\n' + css + '\n</style>';
+    navigator.clipboard.writeText(wrapped).then(function() {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!';
+        setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 4V3a1.5 1.5 0 00-1.5-1.5H3A1.5 1.5 0 001.5 3v5.5A1.5 1.5 0 003 10h1" stroke="currentColor" stroke-width="1.3"/></svg> Copy With &lt;style&gt; Tags';
+        }, 2000);
+    });
+}
+
+// Download file
+function downloadFile(filename, content) {
+    var blob = new Blob([content], { type: 'text/plain' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+function downloadHTMLFile() {
+    if (htmlContent) {
+        downloadFile('content.html', htmlContent);
+    } else {
+        alert('Content not loaded yet. Please open this guide via localhost (node serve.mjs).');
+    }
+}
+</script>
+
+</body>
+</html>
